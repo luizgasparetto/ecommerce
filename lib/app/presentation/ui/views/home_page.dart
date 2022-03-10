@@ -1,4 +1,5 @@
 import 'package:ecommerce/app/presentation/blocs/get_product_list/get_product_list_bloc.dart';
+import 'package:ecommerce/app/presentation/widgets/custom_filter_card.dart';
 import 'package:ecommerce/app/presentation/widgets/custom_product_card.dart';
 import 'package:ecommerce/app/presentation/widgets/custom_text_field_basic.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.height;
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
-        padding: EdgeInsets.all(height * 0.04),
+        padding: EdgeInsets.all(height * 0.03),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,39 +40,68 @@ class HomePage extends StatelessWidget {
                     IconButton(
                       onPressed: () =>
                           Navigator.pushNamed(context, '/frequently_questions'),
-                      icon: Icon(IconlyLight.document, size: height * 0.04),
+                      icon: Icon(
+                        IconlyLight.document,
+                        size: height * 0.04,
+                      ),
                     ),
                     Row(
                       children: [
                         IconButton(
                           onPressed: () =>
                               Navigator.pushNamed(context, '/cart'),
-                          icon:
-                              Icon(AntDesign.shoppingcart, size: height * 0.04),
+                          icon: Icon(
+                            AntDesign.shoppingcart,
+                            size: height * 0.04,
+                          ),
                         ),
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(IconlyLight.profile, size: height * 0.04),
+                          icon: Icon(
+                            IconlyLight.profile,
+                            size: height * 0.04,
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: height * 0.04),
+              SizedBox(height: height * 0.03),
+              Text(
+                'Discover',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).textScaleFactor * 32,
+                  fontFamily: 'Lato',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: height * 0.005),
+              Text(
+                'Find anything what you want',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).textScaleFactor * 14,
+                  fontFamily: 'Lato',
+                  color: Colors.grey.shade500,
+                ),
+              ),
+              SizedBox(height: height * 0.03),
               const CustomTextFieldBasic(
                 hintText: 'Air Jordan 1',
                 icon: IconlyLight.search,
               ),
-              Container(
-                margin: EdgeInsets.only(top: height * 0.05),
-                child: Text(
-                  'Best Sellers',
-                  style: TextStyle(
-                    fontSize: MediaQuery.of(context).textScaleFactor * 32,
-                    fontFamily: 'Lato',
-                    fontWeight: FontWeight.bold,
-                  ),
+              SizedBox(height: height * 0.02),
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.015),
+                child: Row(
+                  children: const [
+                    CustomFilterCard(
+                        icon: MaterialCommunityIcons.all_inclusive),
+                    CustomFilterCard(icon: MaterialCommunityIcons.tshirt_crew),
+                    CustomFilterCard(icon: MaterialCommunityIcons.shoe_print),
+                    CustomFilterCard(icon: MaterialCommunityIcons.hat_fedora),
+                    CustomFilterCard(icon: MaterialCommunityIcons.purse),
+                  ],
                 ),
               ),
               BlocBuilder<GetProductListBloc, GetProductListState>(

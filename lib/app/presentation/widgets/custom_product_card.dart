@@ -39,8 +39,8 @@ class CustomProductCard extends StatelessWidget {
             ),
             // Adicionar Padding All 16 para todos a baixo
             Container(
-              margin: const EdgeInsets.only(top: 150),
-              padding: const EdgeInsets.all(16),
+              margin: EdgeInsets.only(top: height * 0.22),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,17 +51,19 @@ class CustomProductCard extends StatelessWidget {
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.bold,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: height * 0.015),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        productValue,
+                        '\$ ${double.parse(productValue).toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontSize: 18,
                           fontFamily: 'Lato',
                           fontWeight: FontWeight.bold,
+                          //color: Theme.of(context).primaryColor,
                         ),
                       ),
                       InkWell(
