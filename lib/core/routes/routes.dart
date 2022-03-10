@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/presentation/ui/views/cart_page.dart';
 import 'package:ecommerce/app/presentation/ui/views/frequently_questions_page.dart';
 import 'package:ecommerce/app/presentation/ui/views/product_details_page.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ class AppRouter {
         return ProductDetailsPage.route();
       case FrequentlyQuestionsPage.routeName:
         return FrequentlyQuestionsPage.route();
+      case CartPage.routeName:
+        return CartPage.route();
       default:
         return _defaultPage();
     }

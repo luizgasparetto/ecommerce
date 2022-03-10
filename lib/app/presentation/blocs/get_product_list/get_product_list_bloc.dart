@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:ecommerce/app/domain/usecases/get_product_list/get_product_list_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'dart:developer' as dev;
 
 part 'get_product_list_event.dart';
 part 'get_product_list_state.dart';
@@ -17,8 +18,9 @@ class GetProductListBloc
       try {
         final productList = await _getProductListUsecase.handle();
         emit(GetProductListLoadedState(productList));
-      } catch (e) {
+      } catch (e, st) {
         emit(GetProductListErrorState());
+        dev.log('ERRO GET_PRODUCT_LIST', error: e, stackTrace: st);
       }
     });
   }

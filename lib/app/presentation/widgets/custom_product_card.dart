@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-class CustomProductCart extends StatelessWidget {
+class CustomProductCard extends StatelessWidget {
   final String productTitle;
   final String productValue;
-  //final String productMainImg;
+  final String productMainImg;
 
-  const CustomProductCart({
+  const CustomProductCard({
     Key? key,
     required this.productTitle,
     required this.productValue,
+    required this.productMainImg,
   }) : super(key: key);
 
   @override
@@ -19,55 +20,60 @@ class CustomProductCart extends StatelessWidget {
 
     return InkWell(
       child: Container(
-        width: width * 0.38,
+        width: width * 0.4,
         height: height * 0.35,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //Image
-              Container(
-                height: height * 0.22,
-                color: Colors.red,
-                child: const Center(
-                  child: Text('Image', style: TextStyle(color: Colors.white)),
-                ),
+        child: Stack(
+          children: [
+            //Image
+            Container(
+              margin: const EdgeInsets.only(left: 5, top: 10),
+              height: height * 0.21,
+              child: Image.network(
+                productMainImg,
+                fit: BoxFit.fitHeight,
               ),
-              SizedBox(height: height * 0.01),
-              //Title
-              Text(
-                productTitle,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: height * 0.015),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+            // Adicionar Padding All 16 para todos a baixo
+            Container(
+              margin: const EdgeInsets.only(top: 150),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productValue,
+                    productTitle,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  InkWell(
-                    child: const Icon(AntDesign.shoppingcart),
-                    onTap: () {},
-                  )
+                  SizedBox(height: height * 0.015),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        productValue,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      InkWell(
+                        child: const Icon(AntDesign.shoppingcart),
+                        onTap: () {},
+                      )
+                    ],
+                  ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       onTap: () => Navigator.pushNamed(context, '/product_details'),
