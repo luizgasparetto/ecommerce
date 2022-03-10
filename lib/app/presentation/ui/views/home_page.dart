@@ -10,15 +10,6 @@ import 'package:iconly/iconly.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  static const String routeName = '/';
-
-  static Route route() {
-    return MaterialPageRoute(
-      builder: (_) => const HomePage(),
-      settings: const RouteSettings(name: routeName),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.height;
@@ -27,38 +18,40 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
-        padding: EdgeInsets.all(height * 0.03),
+        padding: EdgeInsets.symmetric(horizontal: height * 0.03),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: height * 0.02),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding: EdgeInsets.only(top: height * 0.045),
+                child: Stack(
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/frequently_questions'),
-                      icon: Icon(
-                        IconlyLight.document,
-                        size: height * 0.04,
+                    Padding(
+                      padding: EdgeInsets.only(top: height * 0.005),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          IconlyBold.notification,
+                          size: height * 0.04,
+                        ),
                       ),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/cart'),
+                          onPressed: () {},
                           icon: Icon(
-                            AntDesign.shoppingcart,
+                            MaterialCommunityIcons.cart,
                             size: height * 0.04,
                           ),
                         ),
                         IconButton(
                           onPressed: () {},
                           icon: Icon(
-                            IconlyLight.profile,
+                            IconlyBold.profile,
                             size: height * 0.04,
                           ),
                         ),
@@ -67,7 +60,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.02),
               Text(
                 'Discover',
                 style: TextStyle(
@@ -87,7 +80,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: height * 0.03),
               const CustomTextFieldBasic(
-                hintText: 'Air Jordan 1',
+                hintText: 'Search',
                 icon: IconlyLight.search,
               ),
               SizedBox(height: height * 0.02),
@@ -109,25 +102,33 @@ class HomePage extends StatelessWidget {
                   if (state is GetProductListLoadingState) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is GetProductListLoadedState) {
-                    final productList = state.productList;
+                    return Container(
+                      margin: EdgeInsets.only(bottom: height * 0.02),
+                      child: GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          mainAxisExtent: height * 0.32,
+                        ),
+                        itemCount: state.productList.length,
+                        itemBuilder: (context, index) {
+                          final product = state.productList[index];
 
-                    return GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        mainAxisExtent: height * 0.32,
+                          return CustomProductCard(
+                            productTitle: product.name,
+                            productValue: product.value.toString(),
+                            productMainImg: product.imgUrls[0],
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              '/product_details',
+                              arguments: product,
+                            ),
+                          );
+                        },
                       ),
-                      itemCount: productList.length,
-                      itemBuilder: (context, index) {
-                        return CustomProductCard(
-                          productTitle: productList[index].name,
-                          productValue: productList[index].value.toString(),
-                          productMainImg: productList[index].imgUrls[0],
-                        );
-                      },
                     );
                   } else {
                     return const Center(child: Text('ERROR'));

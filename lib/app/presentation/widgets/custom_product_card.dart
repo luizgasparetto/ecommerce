@@ -5,12 +5,14 @@ class CustomProductCard extends StatelessWidget {
   final String productTitle;
   final String productValue;
   final String productMainImg;
+  final void Function()? onTap;
 
   const CustomProductCard({
     Key? key,
     required this.productTitle,
     required this.productValue,
     required this.productMainImg,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -78,7 +80,7 @@ class CustomProductCard extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () => Navigator.pushNamed(context, '/product_details'),
+      onTap: onTap,
     );
   }
 }
