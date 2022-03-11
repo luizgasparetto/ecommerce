@@ -5,6 +5,7 @@ import 'package:ecommerce/app/presentation/widgets/custom_text_field_basic.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get_it/get_it.dart';
 import 'package:iconly/iconly.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,6 +15,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.height;
     final height = MediaQuery.of(context).size.height;
+
+    final bloc = GetIt.I.get<GetProductListBloc>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -79,21 +82,40 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.03),
-              const CustomTextFieldBasic(
+              CustomTextFieldBasic(
                 hintText: 'Search',
                 icon: IconlyLight.search,
+                onChanged: (value) => bloc
+                  ..add(FetchProductListBySearchBarEvent(searchText: value)),
               ),
               SizedBox(height: height * 0.02),
               Padding(
                 padding: EdgeInsets.only(left: width * 0.015),
                 child: Row(
-                  children: const [
+                  children: [
                     CustomFilterCard(
-                        icon: MaterialCommunityIcons.all_inclusive),
-                    CustomFilterCard(icon: MaterialCommunityIcons.tshirt_crew),
-                    CustomFilterCard(icon: MaterialCommunityIcons.shoe_print),
-                    CustomFilterCard(icon: MaterialCommunityIcons.hat_fedora),
-                    CustomFilterCard(icon: MaterialCommunityIcons.purse),
+                      icon: MaterialCommunityIcons.all_inclusive,
+                      onTap: () async =>
+                          bloc..add(const FetchProductListByTagEvent()),
+                    ),
+                    CustomFilterCard(
+                      icon: MaterialCommunityIcons.tshirt_crew,
+                      onTap: () {},
+                    ),
+                    CustomFilterCard(
+                      icon: MaterialCommunityIcons.shoe_print,
+                      onTap: () async => bloc
+                        ..add(const FetchProductListByTagEvent(tag: 'shoes')),
+                    ),
+                    CustomFilterCard(
+                      icon: MaterialCommunityIcons.hat_fedora,
+                      onTap: () async => bloc
+                        ..add(const FetchProductListByTagEvent(tag: 'cap')),
+                    ),
+                    CustomFilterCard(
+                      icon: MaterialCommunityIcons.purse,
+                      onTap: () {},
+                    ),
                   ],
                 ),
               ),
@@ -118,7 +140,7 @@ class HomePage extends StatelessWidget {
                           final product = state.productList[index];
 
                           return CustomProductCard(
-                            productTitle: product.name,
+                            productTitle: product!.name,
                             productValue: product.value.toString(),
                             productMainImg: product.imgUrls[0],
                             onTap: () => Navigator.pushNamed(

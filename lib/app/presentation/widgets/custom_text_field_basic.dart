@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CustomTextFieldBasic extends StatelessWidget {
   final String hintText;
   final IconData icon;
+  final void Function(String) onChanged;
 
   const CustomTextFieldBasic({
     Key? key,
     required this.hintText,
     required this.icon,
+    required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class CustomTextFieldBasic extends StatelessWidget {
           hintStyle: const TextStyle(),
         ),
         textAlignVertical: TextAlignVertical.bottom,
+        onChanged: onChanged,
       ),
     );
   }

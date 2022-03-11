@@ -10,7 +10,7 @@ abstract class GetProductListState extends Equatable {
 class GetProductListLoadingState extends GetProductListState {}
 
 class GetProductListLoadedState extends GetProductListState {
-  final List<ProductEntity> productList;
+  final List<ProductEntity?> productList;
 
   const GetProductListLoadedState(this.productList);
 
