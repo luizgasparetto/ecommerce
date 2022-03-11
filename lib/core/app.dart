@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<GetProductListBloc>(
           create: (context) => GetIt.I.get<GetProductListBloc>()
-            ..add(const FetchProductListBySearchBarEvent(searchText: 'nike')),
+            ..add(const FetchProductListBySearchBarEvent()),
         ),
       ],
       child: MaterialApp(

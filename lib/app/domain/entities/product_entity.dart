@@ -4,6 +4,7 @@ class ProductEntity {
   final List<String> imgUrls;
   final bool favorite;
   final String tag;
+  final String size;
 
   ProductEntity({
     required this.name,
@@ -11,5 +12,6 @@ class ProductEntity {
     required this.imgUrls,
     required this.favorite,
     required this.tag,
+    required this.size,
   });
 }

@@ -1,12 +1,12 @@
 import 'package:ecommerce/app/presentation/blocs/get_product_list/get_product_list_bloc.dart';
-import 'package:ecommerce/app/presentation/widgets/custom_filter_card.dart';
-import 'package:ecommerce/app/presentation/widgets/custom_product_card.dart';
-import 'package:ecommerce/app/presentation/widgets/custom_text_field_basic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_it/get_it.dart';
 import 'package:iconly/iconly.dart';
+
+import '../../widgets/custom_filter_card.dart';
+import '../../widgets/custom_product_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -82,11 +82,27 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.03),
-              CustomTextFieldBasic(
-                hintText: 'Search',
-                icon: IconlyLight.search,
-                onChanged: (value) => bloc
-                  ..add(FetchProductListBySearchBarEvent(searchText: value)),
+              SizedBox(
+                height: height * 0.07,
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: const BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
+                    ),
+                    prefixIcon: const Icon(IconlyLight.search),
+                    hintText: 'Search',
+                    hintStyle: const TextStyle(),
+                  ),
+                  textAlignVertical: TextAlignVertical.bottom,
+                  onChanged: (value) => bloc
+                    ..add(FetchProductListBySearchBarEvent(searchText: value)),
+                ),
               ),
               SizedBox(height: height * 0.02),
               Padding(
@@ -100,7 +116,9 @@ class HomePage extends StatelessWidget {
                     ),
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.tshirt_crew,
-                      onTap: () {},
+                      onTap: () async => bloc
+                        ..add(const FetchProductListByTagEvent(
+                            tag: 'top-clothing')),
                     ),
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.shoe_print,
@@ -114,7 +132,8 @@ class HomePage extends StatelessWidget {
                     ),
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.purse,
-                      onTap: () {},
+                      onTap: () async => bloc
+                        ..add(const FetchProductListByTagEvent(tag: 'purse')),
                     ),
                   ],
                 ),
@@ -140,15 +159,18 @@ class HomePage extends StatelessWidget {
                           final product = state.productList[index];
 
                           return CustomProductCard(
-                            productTitle: product!.name,
-                            productValue: product.value.toString(),
-                            productMainImg: product.imgUrls[0],
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              '/product_details',
-                              arguments: product,
-                            ),
-                          );
+                              productTitle: product!.name,
+                              productValue: product.value.toString(),
+                              productMainImg: product.imgUrls[0],
+                              onTap: () {
+                                bloc.add(
+                                    const FetchProductListBySearchBarEvent());
+                                Navigator.pushNamed(
+                                  context,
+                                  '/product_details',
+                                  arguments: product,
+                                );
+                              });
                         },
                       ),
                     );

@@ -8,6 +8,7 @@ class ProductDTO extends ProductEntity {
   final List<String> imgUrls;
   final bool favorite;
   final String tag;
+  final String size;
 
   ProductDTO({
     required this.name,
@@ -15,12 +16,15 @@ class ProductDTO extends ProductEntity {
     required this.imgUrls,
     required this.favorite,
     required this.tag,
+    required this.size,
   }) : super(
-            name: name,
-            value: value,
-            imgUrls: imgUrls,
-            favorite: favorite,
-            tag: tag);
+          name: name,
+          value: value,
+          imgUrls: imgUrls,
+          favorite: favorite,
+          tag: tag,
+          size: size,
+        );
 
   Map<String, dynamic> toMap() {
     return {
@@ -29,6 +33,7 @@ class ProductDTO extends ProductEntity {
       'imgUrls': imgUrls,
       'favorite': favorite,
       'tag': tag,
+      'size': size,
     };
   }
 
@@ -39,6 +44,7 @@ class ProductDTO extends ProductEntity {
       imgUrls: List<String>.from(map['imgUrls']),
       favorite: map['favorite'],
       tag: map['tag'],
+      size: map['size'],
     );
   }
 }
