@@ -1,8 +1,9 @@
 // ignore_for_file: unused_field
 
 import 'package:ecommerce/app/domain/services/auth_user_service.dart';
-import 'package:ecommerce/app/infra/exceptions/auth_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'dart:developer' as dev;
 
 class AuthUserServiceImp implements AuthUserService {
   final FirebaseAuth _auth;
@@ -24,13 +25,16 @@ class AuthUserServiceImp implements AuthUserService {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: passw);
       _user = _auth.currentUser;
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e, st) {
       if (e.code == 'weak-password') {
-        throw AuthException('This password is too weak');
+        //throw AuthException('This password is too weak');
+        dev.log('Senha fraca', error: e, stackTrace: st);
       } else if (e.code == 'email-already-in-use') {
-        throw AuthException('Email already in use');
+        //throw AuthException('Email already in use');
+        dev.log('email em uso', error: e, stackTrace: st);
       } else {
-        throw AuthException('Something went wrong...');
+        //throw AuthException('Something went wrong...');
+        dev.log('erro desconhecido', error: e, stackTrace: st);
       }
     }
   }
@@ -42,12 +46,16 @@ class AuthUserServiceImp implements AuthUserService {
       _user = _auth.currentUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        throw AuthException('User not found...');
+        //throw AuthException('User not found...');
+        dev.log('USER NOT FOUND');
       } else if (e.code == 'wrong-password') {
-        throw AuthException('Wrong password! Try again');
+        dev.log('WRONG-PASSWORD');
       } else {
-        throw AuthException('Something went wrong...');
+        dev.log('DEU ERRO! ERRO DESCONHECIDO');
       }
     }
   }
+
+  @override
+  User? getUser() => _user;
 }

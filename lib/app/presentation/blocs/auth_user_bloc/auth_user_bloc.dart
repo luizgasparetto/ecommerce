@@ -15,20 +15,18 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     on<AuthRegisterUserEvent>((event, emit) async {
       try {
         await _authUserController.register(event.email, event.password);
-        dev.log('REGISTRADO');
       } catch (e, st) {
         emit(AuthUserErrorState());
-        dev.log('AUTH_REGISTER_USER_ERROR', error: e, stackTrace: st);
+        dev.log('AUTH_REGISTER_USER_ERROR_BLOC', error: e, stackTrace: st);
       }
     });
 
     on<AuthLoginUserEvent>((event, emit) async {
       try {
         await _authUserController.login(event.email, event.password);
-        dev.log('LOGADO');
       } catch (e, st) {
         emit(AuthUserErrorState());
-        dev.log('AUTH_LOGIN_USER_ERROR', error: e, stackTrace: st);
+        dev.log('AUTH_LOGIN_USER_ERROR_BLOC', error: e, stackTrace: st);
       }
     });
   }

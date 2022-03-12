@@ -76,8 +76,9 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: height * 0.75),
+            Container(
+              margin: EdgeInsets.only(top: height * 0.75),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 children: [
                   Column(
