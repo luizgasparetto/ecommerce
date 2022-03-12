@@ -1,12 +1,12 @@
-import 'package:ecommerce/app/presentation/blocs/get_product_list/get_product_list_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
+import 'package:ecommerce/app/presentation/ui/widgets/custom_filter_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_it/get_it.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../widgets/custom_filter_card.dart';
-import '../../widgets/custom_product_card.dart';
+import '../widgets/custom_product_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -87,7 +87,6 @@ class HomePage extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                       borderSide: const BorderSide(
@@ -163,8 +162,6 @@ class HomePage extends StatelessWidget {
                               productValue: product.value.toString(),
                               productMainImg: product.imgUrls[0],
                               onTap: () {
-                                bloc.add(
-                                    const FetchProductListBySearchBarEvent());
                                 Navigator.pushNamed(
                                   context,
                                   '/product_details',

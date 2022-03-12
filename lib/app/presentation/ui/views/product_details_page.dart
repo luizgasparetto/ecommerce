@@ -1,6 +1,7 @@
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
-import 'package:ecommerce/app/presentation/widgets/custom_store_card.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/custom_store_card.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({Key? key}) : super(key: key);
@@ -62,9 +63,7 @@ class ProductDetailsPage extends StatelessWidget {
                   right: width * 0.05,
                   top: height * 0.3,
                 ),
-                // Start store Card
                 child: const CustomStoreCard(),
-                //Finish store card
               ),
             ),
             Center(
@@ -89,7 +88,7 @@ class ProductDetailsPage extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.grey.shade500,
                           fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).textScaleFactor * 18,
+                          fontSize: MediaQuery.of(context).textScaleFactor * 16,
                         ),
                       ),
                       Text(

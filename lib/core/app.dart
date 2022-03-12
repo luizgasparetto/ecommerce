@@ -1,4 +1,4 @@
-import 'package:ecommerce/app/presentation/blocs/get_product_list/get_product_list_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/views/product_details_page.dart';
 import 'package:ecommerce/core/themes/main_theme.dart';
 import 'package:flutter/material.dart';
