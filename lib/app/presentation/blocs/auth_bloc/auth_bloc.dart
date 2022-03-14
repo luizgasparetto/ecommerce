@@ -17,6 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         await _authRepository.signUp(
             email: event.email, password: event.password);
+        emit(AuthenticatedState());
       } catch (e) {
         throw SignUpException();
       }
@@ -26,6 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         await _authRepository.signIn(
             email: event.email, password: event.password);
+        emit(AuthenticatedState());
       } catch (e) {
         throw SignInException();
       }
@@ -34,6 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogoutEvent>((event, emit) async {
       try {
         await _authRepository.logOut();
+        emit(UnAuthenticatedState());
       } catch (e) {
         throw LogOutException();
       }

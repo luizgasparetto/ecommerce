@@ -133,8 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Text("Don't have an account?"),
                 TextButton(
                   child: const Text('Sign Up!'),
-                  onPressed: () =>
-                      Navigator.pushReplacementNamed(context, '/register'),
+                  onPressed: () => Navigator.pushNamed(context, '/register'),
                 )
               ],
             ),

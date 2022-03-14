@@ -15,6 +15,9 @@ class UserPage extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () async {
             authBloc.add(LogoutEvent());
+            Future.delayed(const Duration(milliseconds: 500), () {
+              Navigator.pop(context);
+            });
           },
           child: const Text('Logout'),
         ),

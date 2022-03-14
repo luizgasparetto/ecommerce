@@ -54,7 +54,5 @@ class AuthRepositoryImp implements AuthRepository {
   User? getUser() => _auth.currentUser;
 
   @override
-  Future<void> logOut() async {
-    await Future.wait([_auth.signOut()]);
-  }
+  Future<void> logOut() async => await _auth.signOut();
 }

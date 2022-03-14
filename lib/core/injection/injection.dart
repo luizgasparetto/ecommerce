@@ -27,8 +27,8 @@ class Injection {
     getIt.registerLazySingleton<GetProductListRepository>(
         () => GetProductListRepositoryImp(getIt()));
 
-    getIt.registerSingleton<AuthRepository>(
-        AuthRepositoryImp(FirebaseAuth.instance));
+    getIt.registerFactory<AuthRepository>(
+        () => AuthRepositoryImp(FirebaseAuth.instance));
 
     //usecases
     getIt.registerLazySingleton<GetProductListUsecase>(

@@ -123,9 +123,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () async {
                     authBloc.add(
                       SignUpEvent(
-                          email: _emailController.text,
-                          password: _passwordController.text),
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      ),
                     );
+                    Future.delayed(const Duration(seconds: 1), () {
+                      Navigator.pop(context);
+                    });
                   }),
             ),
             SizedBox(height: height * 0.015),
