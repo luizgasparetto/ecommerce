@@ -19,7 +19,7 @@ class ProductDetailsPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Stack(

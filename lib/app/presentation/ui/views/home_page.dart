@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/widgets/custom_filter_card.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,8 @@ class HomePage extends StatelessWidget {
     final width = MediaQuery.of(context).size.height;
     final height = MediaQuery.of(context).size.height;
 
-    final bloc = GetIt.I.get<GetProductListBloc>();
+    final productBloc = GetIt.I.get<GetProductListBloc>();
+    final authBloc = GetIt.I.get<AuthBloc>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -52,7 +54,10 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () => Navigator.pushNamed(context, '/usr'),
+                          onPressed: () async {
+                            Navigator.pushNamed(context, '/usr');
+                            authBloc.add(GetUserEvent());
+                          },
                           icon: Icon(
                             IconlyBold.profile,
                             size: height * 0.04,
@@ -99,7 +104,7 @@ class HomePage extends StatelessWidget {
                     hintStyle: const TextStyle(),
                   ),
                   textAlignVertical: TextAlignVertical.bottom,
-                  onChanged: (value) => bloc
+                  onChanged: (value) => productBloc
                     ..add(FetchProductListBySearchBarEvent(searchText: value)),
                 ),
               ),
@@ -111,27 +116,27 @@ class HomePage extends StatelessWidget {
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.all_inclusive,
                       onTap: () async =>
-                          bloc..add(const FetchProductListByTagEvent()),
+                          productBloc..add(const FetchProductListByTagEvent()),
                     ),
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.tshirt_crew,
-                      onTap: () async => bloc
+                      onTap: () async => productBloc
                         ..add(const FetchProductListByTagEvent(
                             tag: 'top-clothing')),
                     ),
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.shoe_print,
-                      onTap: () async => bloc
+                      onTap: () async => productBloc
                         ..add(const FetchProductListByTagEvent(tag: 'shoes')),
                     ),
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.hat_fedora,
-                      onTap: () async => bloc
+                      onTap: () async => productBloc
                         ..add(const FetchProductListByTagEvent(tag: 'cap')),
                     ),
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.purse,
-                      onTap: () async => bloc
+                      onTap: () async => productBloc
                         ..add(const FetchProductListByTagEvent(tag: 'purse')),
                     ),
                   ],

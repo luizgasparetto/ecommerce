@@ -1,6 +1,13 @@
-class UserEntity {
-  final String fullName;
-  final String email;
+import 'package:ecommerce/app/domain/entities/product_entity.dart';
 
-  UserEntity(this.fullName, this.email);
+class UserEntity {
+  final String name;
+  final String email;
+  final List<ProductEntity> cartItems;
+
+  UserEntity({
+    required this.name,
+    required this.email,
+    required this.cartItems,
+  });
 }

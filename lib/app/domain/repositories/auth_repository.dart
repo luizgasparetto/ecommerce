@@ -7,5 +7,4 @@ abstract class AuthRepository {
   Future<void> logOut();
   Widget getLandingPage(BuildContext context);
   Stream<User?> get user;
-  User? getUser();
 }
