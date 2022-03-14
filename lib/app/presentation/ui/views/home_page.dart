@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () => Navigator.pushNamed(context, '/usr'),
                           icon: Icon(
                             IconlyBold.profile,
                             size: height * 0.04,

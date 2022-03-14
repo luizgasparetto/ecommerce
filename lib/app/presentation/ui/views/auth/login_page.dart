@@ -1,21 +1,31 @@
-import 'package:ecommerce/app/presentation/blocs/auth_user_bloc/auth_user_bloc.dart';
-import 'package:ecommerce/app/presentation/ui/widgets/custom_text_field_basic.dart';
+import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
-
-    final bloc = GetIt.I.get<AuthUserBloc>();
+    final authBloc = context.read<AuthBloc>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -53,18 +63,38 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: height * 0.05),
-                  CustomTextFieldBasic(
-                    hintText: 'E-mail',
-                    icon: MaterialCommunityIcons.email,
-                    textInputType: TextInputType.emailAddress,
+                  TextField(
                     controller: _emailController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      prefixIcon: const Icon(Icons.email),
+                      hintText: 'E-mail',
+                    ),
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: height * 0.015),
-                  CustomTextFieldBasic(
-                    hintText: 'Password',
-                    icon: Icons.password,
-                    obscureText: true,
+                  TextField(
                     controller: _passwordController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      prefixIcon: const Icon(Icons.password),
+                      hintText: 'Password',
+                    ),
+                    obscureText: true,
                   ),
                 ],
               ),
@@ -73,26 +103,28 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).textScaleFactor * 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).textScaleFactor * 20,
+                      ),
                     ),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColorDark,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColorDark,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
-                ),
-                onPressed: () async {
-                  bloc.add(AuthLoginUserEvent(
-                      _emailController.text, _passwordController.text));
-                },
-              ),
+                  onPressed: () async {
+                    authBloc.add(
+                      SignInEvent(
+                          email: _emailController.text,
+                          password: _passwordController.text),
+                    );
+                  }),
             ),
             SizedBox(height: height * 0.015),
             Row(
@@ -101,7 +133,8 @@ class LoginPage extends StatelessWidget {
                 const Text("Don't have an account?"),
                 TextButton(
                   child: const Text('Sign Up!'),
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.pushReplacementNamed(context, '/register'),
                 )
               ],
             ),

@@ -1,7 +1,8 @@
-import 'package:ecommerce/app/presentation/blocs/auth_user_bloc/auth_user_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:get_it/get_it.dart';
+
+import '../../../blocs/auth_bloc/auth_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    final bloc = GetIt.I.get<AuthUserBloc>();
+    final authBloc = context.read<AuthBloc>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -104,30 +105,28 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).textScaleFactor * 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      'Register',
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).textScaleFactor * 20,
+                      ),
                     ),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColorDark,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                onPressed: () async {
-                  bloc.add(
-                    AuthRegisterUserEvent(
-                      _emailController.text,
-                      _passwordController.text,
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColorDark,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  );
-                },
-              ),
+                  ),
+                  onPressed: () async {
+                    authBloc.add(
+                      SignUpEvent(
+                          email: _emailController.text,
+                          password: _passwordController.text),
+                    );
+                  }),
             ),
             SizedBox(height: height * 0.015),
             Row(
