@@ -1,4 +1,5 @@
 import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc_bloc.dart';
 import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/widgets/custom_filter_card.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatelessWidget {
 
     final productBloc = GetIt.I.get<GetProductListBloc>();
     final authBloc = GetIt.I.get<AuthBloc>();
+    final cartBloc = GetIt.I.get<CartBloc>();
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -33,30 +35,23 @@ class HomePage extends StatelessWidget {
                 child: Stack(
                   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: height * 0.005),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          IconlyBold.notification,
-                          size: height * 0.04,
-                        ),
-                      ),
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                          onPressed: () {},
                           icon: Icon(
                             MaterialCommunityIcons.cart,
                             size: height * 0.04,
                           ),
+                          onPressed: () {
+                            cartBloc.add(GetCartItensEvent());
+                            Navigator.pushNamed(context, '/cart');
+                          },
                         ),
                         IconButton(
                           onPressed: () async {
-                            Navigator.pushNamed(context, '/usr');
                             authBloc.add(GetUserEvent());
+                            Navigator.pushNamed(context, '/usr');
                           },
                           icon: Icon(
                             IconlyBold.profile,
@@ -112,6 +107,7 @@ class HomePage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: width * 0.015),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomFilterCard(
                       icon: MaterialCommunityIcons.all_inclusive,
@@ -163,9 +159,7 @@ class HomePage extends StatelessWidget {
                           final product = state.productList[index];
 
                           return CustomProductCard(
-                              productTitle: product!.name,
-                              productValue: product.value.toString(),
-                              productMainImg: product.imgUrls[0],
+                              product: product,
                               onTap: () {
                                 Navigator.pushNamed(
                                   context,

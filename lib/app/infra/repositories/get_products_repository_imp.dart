@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:ecommerce/app/domain/repositories/get_products_repository.dart';
 import 'package:ecommerce/app/infra/datasources/get_products_datasource.dart';
 
@@ -9,7 +10,7 @@ class GetProductListRepositoryImp implements GetProductListRepository {
   GetProductListRepositoryImp(this._getProductsDataSource);
 
   @override
-  Future<List<ProductDTO>> getProductList() async {
+  Future<List<ProductEntity>> getProductList() async {
     final fireStoreProductListSnapshot =
         await _getProductsDataSource.getProductList();
 

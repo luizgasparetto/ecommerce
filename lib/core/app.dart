@@ -1,10 +1,12 @@
 import 'package:ecommerce/app/domain/repositories/auth_repository.dart';
 import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc_bloc.dart';
 import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/views/auth/login_page.dart';
 import 'package:ecommerce/app/presentation/ui/views/auth/register_page.dart';
+import 'package:ecommerce/app/presentation/ui/views/cart_page.dart';
 import 'package:ecommerce/app/presentation/ui/views/product_details_page.dart';
-import 'package:ecommerce/app/presentation/ui/views/user/user_main_page.dart';
+import 'package:ecommerce/app/presentation/ui/views/user_page.dart';
 import 'package:ecommerce/core/themes/main_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
             ..add(const FetchProductListBySearchBarEvent()),
         ),
         BlocProvider<AuthBloc>(create: (context) => GetIt.I.get<AuthBloc>()),
+        BlocProvider<CartBloc>(create: (context) => GetIt.I.get<CartBloc>()),
       ],
       child: MaterialApp(
         title: 'Ecommerce',
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
           '/home': (context) => const HomePage(),
           '/product_details': (context) => const ProductDetailsPage(),
           '/usr': (context) => const UserMainPage(),
+          '/cart': (context) => const CartPage(),
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),
         },

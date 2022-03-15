@@ -1,17 +1,16 @@
+import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:iconly/iconly.dart';
 
 class CustomProductCard extends StatelessWidget {
-  final String productTitle;
-  final String productValue;
-  final String productMainImg;
+  final ProductEntity? product;
+
   final void Function()? onTap;
 
   const CustomProductCard({
     Key? key,
-    required this.productTitle,
-    required this.productValue,
-    required this.productMainImg,
+    required this.product,
     required this.onTap,
   }) : super(key: key);
 
@@ -27,6 +26,11 @@ class CustomProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
+          // boxShadow: const [
+          //   BoxShadow(
+          //     blurRadius: 3,
+          //   ),
+          // ],
         ),
         child: Stack(
           children: [
@@ -35,7 +39,7 @@ class CustomProductCard extends StatelessWidget {
               margin: const EdgeInsets.only(left: 5, top: 10),
               height: height * 0.21,
               child: Image.network(
-                productMainImg,
+                product!.imgUrls[0],
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -47,7 +51,7 @@ class CustomProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productTitle,
+                    product!.name,
                     style: const TextStyle(
                       fontSize: 15,
                       fontFamily: 'Lato',
@@ -60,7 +64,7 @@ class CustomProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$ ${double.parse(productValue).toStringAsFixed(2)}',
+                        '\$ ${product!.value.toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontSize: 18,
                           fontFamily: 'Lato',
@@ -69,7 +73,7 @@ class CustomProductCard extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        child: const Icon(AntDesign.shoppingcart),
+                        child: const Icon(MaterialCommunityIcons.cart),
                         onTap: () {},
                       )
                     ],

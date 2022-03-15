@@ -1,1 +1,0 @@
-class LogOutException implements Exception {}

@@ -1,5 +1,7 @@
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
+import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../widgets/custom_store_card.dart';
 
@@ -12,6 +14,7 @@ class ProductDetailsPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     final product = ModalRoute.of(context)!.settings.arguments as ProductEntity;
+    final cartBloc = GetIt.I.get<CartBloc>();
 
     return Scaffold(
       appBar: AppBar(
@@ -104,7 +107,6 @@ class ProductDetailsPage extends StatelessWidget {
                   ),
                   const Spacer(),
                   ElevatedButton(
-                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColorDark,
                       shape: RoundedRectangleBorder(
@@ -120,6 +122,12 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    onPressed: () {
+                      cartBloc.add(AddCartItemEvent(product));
+                      cartBloc.add(GetCartItensEvent());
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/cart');
+                    },
                   ),
                 ],
               ),

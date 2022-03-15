@@ -6,7 +6,6 @@ class ProductDTO extends ProductEntity {
   final String name;
   final double value;
   final List<String> imgUrls;
-  final bool favorite;
   final String tag;
   final String size;
 
@@ -14,14 +13,12 @@ class ProductDTO extends ProductEntity {
     required this.name,
     required this.value,
     required this.imgUrls,
-    required this.favorite,
     required this.tag,
     required this.size,
   }) : super(
           name: name,
           value: value,
           imgUrls: imgUrls,
-          favorite: favorite,
           tag: tag,
           size: size,
         );
@@ -31,7 +28,6 @@ class ProductDTO extends ProductEntity {
       'name': name,
       'value': value,
       'imgUrls': imgUrls,
-      'favorite': favorite,
       'tag': tag,
       'size': size,
     };
@@ -42,7 +38,6 @@ class ProductDTO extends ProductEntity {
       name: map['name'] ?? '',
       value: map['value']?.toDouble() ?? 0.0,
       imgUrls: List<String>.from(map['imgUrls']),
-      favorite: map['favorite'],
       tag: map['tag'],
       size: map['size'],
     );
