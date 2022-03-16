@@ -39,12 +39,28 @@ class HomePage extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: Icon(
+                            MaterialCommunityIcons.logout,
+                            size: height * 0.04,
+                          ),
+                          onPressed: () {
+                            authBloc.add(LogoutEvent());
+                            Future.delayed(const Duration(milliseconds: 500),
+                                () {
+                              Navigator.pop(context);
+                            });
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(
                             MaterialCommunityIcons.cart,
                             size: height * 0.04,
                           ),
                           onPressed: () {
                             cartBloc.add(GetCartProductsEvent());
-                            Navigator.pushNamed(context, '/cart');
+                            Future.delayed(const Duration(milliseconds: 100),
+                                () {
+                              Navigator.pushNamed(context, '/cart');
+                            });
                           },
                         ),
                         IconButton(

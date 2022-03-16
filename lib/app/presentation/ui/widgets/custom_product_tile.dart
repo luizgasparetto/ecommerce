@@ -25,12 +25,12 @@ class CustomProductTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: height * 0.2,
+            height: height * 0.20,
             child: Image.network(product.imgUrls[0]),
           ),
-          SizedBox(width: width * 0.01),
+          SizedBox(width: width * 0.02),
           SizedBox(
-            width: width * 0.49,
+            width: width * 0.48,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,19 +45,19 @@ class CustomProductTile extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  '\$ ${product.value.toStringAsFixed(2)}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).textScaleFactor * 20,
-                  ),
-                ),
-                SizedBox(height: height * 0.01),
-                Text(
                   'Size: ${product.size}',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: MediaQuery.of(context).textScaleFactor * 15,
                     color: Colors.grey.shade500,
+                  ),
+                ),
+                SizedBox(height: height * 0.005),
+                Text(
+                  '\$ ${product.value.toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).textScaleFactor * 20,
                   ),
                 ),
               ],

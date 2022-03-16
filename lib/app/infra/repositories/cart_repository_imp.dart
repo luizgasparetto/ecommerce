@@ -18,6 +18,18 @@ class CartRepositoryImp implements CartRepository {
   }
 
   @override
+  Future<double> getCartTotalValue() async {
+    final cartProductList = await getCartProducts();
+    double total = 0.0;
+
+    for (var product in cartProductList) {
+      total += product.value;
+    }
+
+    return total;
+  }
+
+  @override
   Future<void> addCartItem(ProductEntity product) async {
     final productJson = ProductDTO(
       name: product.name,
@@ -30,6 +42,7 @@ class CartRepositoryImp implements CartRepository {
     return await _userDatasource.addCartItem(productJson.toMap());
   }
 
+  @override
   Future<void> deleteCartItem(ProductEntity product) async {
     final productJson = ProductDTO(
       name: product.name,

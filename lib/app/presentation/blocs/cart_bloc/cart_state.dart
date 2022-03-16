@@ -11,11 +11,12 @@ class CartLoadingState extends CartState {}
 
 class CartProductsLoadedState extends CartState {
   final List<ProductEntity> cartProducts;
+  final double totalValue;
 
-  const CartProductsLoadedState(this.cartProducts);
+  const CartProductsLoadedState(this.cartProducts, this.totalValue);
 
   @override
-  List<Object> get props => [cartProducts];
+  List<Object> get props => [cartProducts, totalValue];
 }
 
 class CartEmptyState extends CartState {}

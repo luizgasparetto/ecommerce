@@ -5,6 +5,7 @@ import 'package:ecommerce/app/domain/usecases/user_usecase/user_usecase.dart';
 import 'package:ecommerce/app/infra/exceptions/sign_in_exception.dart';
 import 'package:ecommerce/app/infra/exceptions/sign_up_exception.dart';
 import 'package:equatable/equatable.dart';
+import 'dart:developer' as dev;
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -49,7 +50,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         final user = await _userUsecase.getUser();
         emit(AuthGetUserState(user: user));
-      } catch (_) {}
+      } catch (e, st) {
+        dev.log('ERRO AO CARREGAR O USUÁRIO', error: e, stackTrace: st);
+      }
     });
   }
 }

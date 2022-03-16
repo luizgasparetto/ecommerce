@@ -1,4 +1,5 @@
 import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
+import 'package:ecommerce/app/presentation/ui/widgets/custom_elevated_button.dart';
 import 'package:ecommerce/app/presentation/ui/widgets/custom_product_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,11 +37,54 @@ class CartPage extends StatelessWidget {
               } else if (state is CartProductsLoadedState) {
                 final productList = state.cartProducts;
 
-                return ListView.builder(
-                  itemCount: productList.length,
-                  itemBuilder: (context, index) {
-                    return CustomProductTile(product: productList[index]);
-                  },
+                return Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: productList.length,
+                      itemBuilder: (context, index) {
+                        return CustomProductTile(product: productList[index]);
+                      },
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Total Price",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).textScaleFactor *
+                                          16,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
+                              Text(
+                                "\$ ${state.totalValue.toStringAsFixed(2)}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).textScaleFactor *
+                                          32,
+                                ),
+                              ),
+                            ],
+                          ),
+                          CustomElevatedButton(
+                            buttonTitle: 'Checkout',
+                            paddingValue: 20,
+                            onPressedFunction: () {},
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 );
               } else if (state is CartEmptyState) {
                 return SizedBox(

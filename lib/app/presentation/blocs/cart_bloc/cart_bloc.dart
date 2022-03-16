@@ -15,9 +15,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<GetCartProductsEvent>((event, emit) async {
       try {
         final cartProducts = await _cartUsecase.getCartProducts();
+        final productsTotalValue = await _cartUsecase.getCartTotalValue();
         cartProducts.isEmpty
             ? emit(CartEmptyState())
-            : emit(CartProductsLoadedState(cartProducts));
+            : emit(CartProductsLoadedState(cartProducts, productsTotalValue));
       } on CartException catch (e) {
         emit(CartErrorState(errorMessage: e.errorMessage));
       }

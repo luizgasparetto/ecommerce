@@ -1,5 +1,6 @@
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
+import 'package:ecommerce/app/presentation/ui/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -106,23 +107,10 @@ class ProductDetailsPage extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).primaryColorDark,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        'Add to Cart',
-                        style: TextStyle(
-                          fontSize: MediaQuery.of(context).textScaleFactor * 20,
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
+                  CustomElevatedButton(
+                    buttonTitle: 'Add to Cart',
+                    paddingValue: 16,
+                    onPressedFunction: () {
                       cartBloc.add(AddProductInCartEvent(product));
                       Future.delayed(const Duration(milliseconds: 700), () {
                         cartBloc.add(GetCartProductsEvent());
@@ -130,7 +118,7 @@ class ProductDetailsPage extends StatelessWidget {
                         Navigator.pushNamed(context, '/cart');
                       });
                     },
-                  ),
+                  )
                 ],
               ),
             )

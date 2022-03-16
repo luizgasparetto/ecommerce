@@ -29,4 +29,9 @@ class CartUsecaseImp implements CartUsecase {
   Future<void> deleteCartItem(ProductEntity product) async {
     await _cartRepository.deleteCartItem(product);
   }
+
+  @override
+  Future<double> getCartTotalValue() async {
+    return await _cartRepository.getCartTotalValue();
+  }
 }
