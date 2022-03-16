@@ -33,7 +33,6 @@ class HomePage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: height * 0.045),
                 child: Stack(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -44,7 +43,7 @@ class HomePage extends StatelessWidget {
                             size: height * 0.04,
                           ),
                           onPressed: () {
-                            cartBloc.add(GetCartItensEvent());
+                            cartBloc.add(GetCartProductsEvent());
                             Navigator.pushNamed(context, '/cart');
                           },
                         ),

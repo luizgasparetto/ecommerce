@@ -29,4 +29,16 @@ class CartRepositoryImp implements CartRepository {
 
     return await _userDatasource.addCartItem(productJson.toMap());
   }
+
+  Future<void> deleteCartItem(ProductEntity product) async {
+    final productJson = ProductDTO(
+      name: product.name,
+      value: product.value,
+      imgUrls: product.imgUrls,
+      tag: product.tag,
+      size: product.size,
+    );
+
+    return await _userDatasource.deleteCartItem(productJson.toMap());
+  }
 }

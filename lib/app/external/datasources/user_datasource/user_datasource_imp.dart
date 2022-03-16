@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
-import 'package:ecommerce/app/infra/dtos/product_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer' as dev;
 
@@ -59,6 +58,20 @@ class UserDatasourceImp implements UserDatasource {
       });
     } catch (e, st) {
       dev.log('ERRO AO ADICIONAR NO CARRINHO', error: e, stackTrace: st);
+    }
+  }
+
+  @override
+  Future<void> deleteCartItem(Map<String, dynamic> product) async {
+    try {
+      await _firebaseFirestore
+          .collection('users')
+          .doc(_firebaseAuth.currentUser!.uid)
+          .update({
+        'cartItems': FieldValue.arrayRemove([product]),
+      });
+    } catch (e, st) {
+      dev.log('ERRO AO REMOVER DO CARRINHO', error: e, stackTrace: st);
     }
   }
 }

@@ -1,7 +1,6 @@
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:iconly/iconly.dart';
 
 class CustomProductCard extends StatelessWidget {
   final ProductEntity? product;
@@ -26,15 +25,9 @@ class CustomProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          // boxShadow: const [
-          //   BoxShadow(
-          //     blurRadius: 3,
-          //   ),
-          // ],
         ),
         child: Stack(
           children: [
-            //Image
             Container(
               margin: const EdgeInsets.only(left: 5, top: 10),
               height: height * 0.21,
@@ -43,7 +36,6 @@ class CustomProductCard extends StatelessWidget {
                 fit: BoxFit.fitHeight,
               ),
             ),
-            // Adicionar Padding All 16 para todos a baixo
             Container(
               margin: EdgeInsets.only(top: height * 0.22),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -69,7 +61,6 @@ class CustomProductCard extends StatelessWidget {
                           fontSize: 18,
                           fontFamily: 'Lato',
                           fontWeight: FontWeight.bold,
-                          //color: Theme.of(context).primaryColor,
                         ),
                       ),
                       InkWell(

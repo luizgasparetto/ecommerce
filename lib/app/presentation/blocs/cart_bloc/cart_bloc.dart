@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:ecommerce/app/domain/usecases/cart_usecase/cart_usecase.dart';
+import 'package:ecommerce/app/infra/exceptions/cart_exceptions.dart';
 import 'package:equatable/equatable.dart';
-import 'dart:developer' as dev;
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -12,24 +12,30 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   CartBloc(this._cartUsecase) : super(CartLoadingState()) {
     //
-    on<GetCartItensEvent>((event, emit) async {
+    on<GetCartProductsEvent>((event, emit) async {
       try {
         final cartProducts = await _cartUsecase.getCartProducts();
         cartProducts.isEmpty
             ? emit(CartEmptyState())
             : emit(CartProductsLoadedState(cartProducts));
-      } catch (_) {
-        emit(CartErrorState());
+      } on CartException catch (e) {
+        emit(CartErrorState(errorMessage: e.errorMessage));
       }
     });
 
-    on<AddCartItemEvent>((event, emit) async {
+    on<AddProductInCartEvent>((event, emit) async {
       try {
         await _cartUsecase.addCartItem(event.product);
-      } catch (e, st) {
-        emit(CartErrorState());
-        dev.log('ERRO AO ADICIONAR O PRODUTO AO CARRINHO',
-            error: e, stackTrace: st);
+      } on CartException catch (e) {
+        emit(CartErrorState(errorMessage: e.errorMessage));
+      }
+    });
+
+    on<DeleteCartProductEvent>((event, emit) async {
+      try {
+        await _cartUsecase.deleteCartItem(event.product);
+      } catch (e) {
+        throw CartException();
       }
     });
   }

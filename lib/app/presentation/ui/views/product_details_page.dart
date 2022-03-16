@@ -123,10 +123,12 @@ class ProductDetailsPage extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      cartBloc.add(AddCartItemEvent(product));
-                      cartBloc.add(GetCartItensEvent());
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, '/cart');
+                      cartBloc.add(AddProductInCartEvent(product));
+                      Future.delayed(const Duration(milliseconds: 700), () {
+                        cartBloc.add(GetCartProductsEvent());
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, '/cart');
+                      });
                     },
                   ),
                 ],

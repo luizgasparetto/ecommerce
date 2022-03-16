@@ -11,6 +11,7 @@ class UserMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
     final authBloc = context.read<AuthBloc>();
 
     return Scaffold(
@@ -29,125 +30,124 @@ class UserMainPage extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is AuthGetUserState) {
                 final user = state.user;
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ListTile(
-                      leading: Icon(
-                        IconlyBold.profile,
-                        color: Theme.of(context).primaryColorDark,
-                        size: height * 0.07,
-                      ),
-                      title: Text(
-                        user.name,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorDark),
-                      ),
-                      subtitle: Text(user.email),
-                      // trailing: Icon(
-                      //   MaterialCommunityIcons.arrow_right,
-                      //   color: Theme.of(context).primaryColorDark,
-                      // ),
-                      tileColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    SizedBox(height: height * 0.04),
-                    //Divider(color: Theme.of(context).primaryColorDark),
-                    ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(left: width * 0.03),
-                        child: Icon(
-                          MaterialCommunityIcons.basket,
+                return Padding(
+                  padding: EdgeInsets.only(top: height * 0.12),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(
+                          IconlyBold.profile,
                           color: Theme.of(context).primaryColorDark,
-                          size: height * 0.045,
+                          size: height * 0.07,
                         ),
-                      ),
-                      title: Text(
-                        "All your orders",
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorDark),
-                      ),
-                      subtitle: const Text("Check them right out anytime"),
-                      tileColor: Colors.white,
-                      trailing: Icon(
-                        MaterialCommunityIcons.arrow_right,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    SizedBox(height: height * 0.015),
-                    ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(left: width * 0.03),
-                        child: Icon(
-                          MaterialCommunityIcons.star,
-                          color: Theme.of(context).primaryColorDark,
-                          size: height * 0.045,
-                        ),
-                      ),
-                      title: Text(
-                        "All your reviews",
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorDark),
-                      ),
-                      subtitle: const Text("Check them right out anytime"),
-                      tileColor: Colors.white,
-                      trailing: Icon(
-                        MaterialCommunityIcons.arrow_right,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    SizedBox(height: height * 0.04),
-                    ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(left: width * 0.03),
-                        child: Icon(
-                          MaterialCommunityIcons.map_marker,
-                          color: Theme.of(context).primaryColorDark,
-                          size: height * 0.045,
-                        ),
-                      ),
-                      title: Text(
-                        "Delivery address",
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorDark),
-                      ),
-                      tileColor: Colors.white,
-                      trailing: Icon(
-                        MaterialCommunityIcons.arrow_right,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    SizedBox(height: height * 0.04),
-                    InkWell(
-                      child: ListTile(
                         title: Text(
-                          "Logout",
+                          user.name,
                           style: TextStyle(
-                              color: Colors.red,
-                              fontSize:
-                                  MediaQuery.of(context).textScaleFactor * 20),
-                          textAlign: TextAlign.center,
+                              color: Theme.of(context).primaryColorDark),
                         ),
+                        subtitle: Text(user.email),
                         tileColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                            borderRadius: BorderRadius.circular(20)),
                       ),
-                      onTap: () async {
-                        authBloc.add(LogoutEvent());
-                        Future.delayed(const Duration(milliseconds: 500), () {
-                          Navigator.pop(context);
-                        });
-                      },
-                    ),
-                  ],
+                      SizedBox(height: height * 0.04),
+                      //Divider(color: Theme.of(context).primaryColorDark),
+                      ListTile(
+                        leading: Padding(
+                          padding: EdgeInsets.only(left: width * 0.03),
+                          child: Icon(
+                            MaterialCommunityIcons.basket,
+                            color: Theme.of(context).primaryColorDark,
+                            size: height * 0.045,
+                          ),
+                        ),
+                        title: Text(
+                          "All your orders",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorDark),
+                        ),
+                        subtitle: const Text("Check them right out anytime"),
+                        tileColor: Colors.white,
+                        trailing: Icon(
+                          MaterialCommunityIcons.arrow_right,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      SizedBox(height: height * 0.015),
+                      ListTile(
+                        leading: Padding(
+                          padding: EdgeInsets.only(left: width * 0.03),
+                          child: Icon(
+                            MaterialCommunityIcons.star,
+                            color: Theme.of(context).primaryColorDark,
+                            size: height * 0.045,
+                          ),
+                        ),
+                        title: Text(
+                          "All your reviews",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorDark),
+                        ),
+                        subtitle: const Text("Check them right out anytime"),
+                        tileColor: Colors.white,
+                        trailing: Icon(
+                          MaterialCommunityIcons.arrow_right,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      SizedBox(height: height * 0.04),
+                      ListTile(
+                        leading: Padding(
+                          padding: EdgeInsets.only(left: width * 0.03),
+                          child: Icon(
+                            MaterialCommunityIcons.map_marker,
+                            color: Theme.of(context).primaryColorDark,
+                            size: height * 0.045,
+                          ),
+                        ),
+                        title: Text(
+                          "Delivery address",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorDark),
+                        ),
+                        tileColor: Colors.white,
+                        trailing: Icon(
+                          MaterialCommunityIcons.arrow_right,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      SizedBox(height: height * 0.04),
+                      InkWell(
+                        child: ListTile(
+                          title: Text(
+                            "Logout",
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize:
+                                    MediaQuery.of(context).textScaleFactor *
+                                        20),
+                            textAlign: TextAlign.center,
+                          ),
+                          tileColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        onTap: () async {
+                          authBloc.add(LogoutEvent());
+                          Future.delayed(const Duration(milliseconds: 500), () {
+                            Navigator.pop(context);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 );
               }
               return Container();

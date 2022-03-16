@@ -20,4 +20,11 @@ class CartProductsLoadedState extends CartState {
 
 class CartEmptyState extends CartState {}
 
-class CartErrorState extends CartState {}
+class CartErrorState extends CartState {
+  final String errorMessage;
+
+  const CartErrorState({required this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+}

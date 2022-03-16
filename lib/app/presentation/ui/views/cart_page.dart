@@ -1,12 +1,16 @@
 import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
+import 'package:ecommerce/app/presentation/ui/widgets/custom_product_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -22,30 +26,36 @@ class CartPage extends StatelessWidget {
         centerTitle: true,
       ),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Center(
-        child: BlocBuilder<CartBloc, CartState>(
-          builder: (context, state) {
-            if (state is CartLoadingState) {
-              return const CircularProgressIndicator();
-            } else if (state is CartProductsLoadedState) {
-              final productList = state.cartProducts;
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(
+          child: BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              if (state is CartLoadingState) {
+                return const CircularProgressIndicator();
+              } else if (state is CartProductsLoadedState) {
+                final productList = state.cartProducts;
 
-              return ListView.builder(
-                itemCount: productList.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Image.network(productList[index].imgUrls[0]),
-                    title: Text(productList[index].name),
-                    subtitle: Text('\$ ${productList[index].value}'),
-                  );
-                },
-              );
-            } else if (state is CartEmptyState) {
-              return const Text('CARRINHO VAZIO');
-            } else {
-              return const Text('DEU ERRO');
-            }
-          },
+                return ListView.builder(
+                  itemCount: productList.length,
+                  itemBuilder: (context, index) {
+                    return CustomProductTile(product: productList[index]);
+                  },
+                );
+              } else if (state is CartEmptyState) {
+                return SizedBox(
+                  height: height * 0.15,
+                  child: Lottie.asset('assets/lottie/empty.json'),
+                );
+              } else if (state is CartErrorState) {
+                final message = state.errorMessage;
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(message),
+                ));
+              }
+              return Container();
+            },
+          ),
         ),
       ),
     );
