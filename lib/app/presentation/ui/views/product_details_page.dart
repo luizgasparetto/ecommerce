@@ -1,5 +1,5 @@
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
-import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

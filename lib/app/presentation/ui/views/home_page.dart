@@ -1,5 +1,5 @@
 import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
 import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/widgets/custom_filter_card.dart';
 import 'package:flutter/material.dart';

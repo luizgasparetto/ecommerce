@@ -1,6 +1,6 @@
 import 'package:ecommerce/app/domain/repositories/auth_repository.dart';
 import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
 import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/views/auth/login_page.dart';
 import 'package:ecommerce/app/presentation/ui/views/auth/register_page.dart';

@@ -1,4 +1,4 @@
-import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc_bloc.dart';
+import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,21 +27,21 @@ class CartPage extends StatelessWidget {
           builder: (context, state) {
             if (state is CartLoadingState) {
               return const CircularProgressIndicator();
-            } else if (state is CartItemsLoadedState) {
+            } else if (state is CartProductsLoadedState) {
               final productList = state.cartProducts;
 
-              return productList.isEmpty
-                  ? const Text('SEM ITENS')
-                  : ListView.builder(
-                      itemCount: productList.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Image.network(productList[index].imgUrls[0]),
-                          title: Text(productList[index].name),
-                          subtitle: Text('\$ ${productList[index].value}'),
-                        );
-                      },
-                    );
+              return ListView.builder(
+                itemCount: productList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Image.network(productList[index].imgUrls[0]),
+                    title: Text(productList[index].name),
+                    subtitle: Text('\$ ${productList[index].value}'),
+                  );
+                },
+              );
+            } else if (state is CartEmptyState) {
+              return const Text('CARRINHO VAZIO');
             } else {
               return const Text('DEU ERRO');
             }

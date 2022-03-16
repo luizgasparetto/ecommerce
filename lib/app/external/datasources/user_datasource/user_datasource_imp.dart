@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
+import 'package:ecommerce/app/infra/dtos/product_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:developer' as dev;
 
 import 'package:ecommerce/app/infra/datasources/user_datasource.dart';
 
@@ -47,12 +49,16 @@ class UserDatasourceImp implements UserDatasource {
   }
 
   @override
-  Future<void> addCartItem(ProductEntity product) async {
-    await _firebaseFirestore
-        .collection('users')
-        .doc(_firebaseAuth.currentUser!.uid)
-        .update({
-      'cartItems': FieldValue.arrayUnion([product]),
-    });
+  Future<void> addCartItem(Map<String, dynamic> product) async {
+    try {
+      await _firebaseFirestore
+          .collection('users')
+          .doc(_firebaseAuth.currentUser!.uid)
+          .update({
+        'cartItems': FieldValue.arrayUnion([product]),
+      });
+    } catch (e, st) {
+      dev.log('ERRO AO ADICIONAR NO CARRINHO', error: e, stackTrace: st);
+    }
   }
 }

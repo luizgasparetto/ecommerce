@@ -11,6 +11,7 @@ class CartRepositoryImp implements CartRepository {
   @override
   Future<List<ProductEntity>> getCartProducts() async {
     final fireStoreCartList = await _userDatasource.getCartItems();
+
     return fireStoreCartList
         .map((product) => ProductDTO.fromMap(product))
         .toList();
@@ -18,6 +19,14 @@ class CartRepositoryImp implements CartRepository {
 
   @override
   Future<void> addCartItem(ProductEntity product) async {
-    await _userDatasource.addCartItem(product);
+    final productJson = ProductDTO(
+      name: product.name,
+      value: product.value,
+      imgUrls: product.imgUrls,
+      tag: product.tag,
+      size: product.size,
+    );
+
+    return await _userDatasource.addCartItem(productJson.toMap());
   }
 }

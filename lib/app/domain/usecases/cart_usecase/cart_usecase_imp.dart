@@ -8,10 +8,12 @@ class CartUsecaseImp implements CartUsecase {
 
   CartUsecaseImp(this._cartRepository);
 
+  @override
   Future<List<ProductEntity>> getCartProducts() async {
     return await _cartRepository.getCartProducts();
   }
 
+  @override
   Future<void> addCartItem(ProductEntity product) async {
     await _cartRepository.addCartItem(product);
   }
