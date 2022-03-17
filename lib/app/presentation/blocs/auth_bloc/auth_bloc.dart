@@ -1,11 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:ecommerce/app/domain/entities/user_entity.dart';
-import 'package:ecommerce/app/domain/repositories/auth_repository.dart';
-import 'package:ecommerce/app/domain/usecases/user_usecase/user_usecase.dart';
-import 'package:ecommerce/app/infra/exceptions/sign_in_exception.dart';
-import 'package:ecommerce/app/infra/exceptions/sign_up_exception.dart';
-import 'package:equatable/equatable.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 import 'dart:developer' as dev;
+
+import 'package:equatable/equatable.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

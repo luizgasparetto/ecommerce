@@ -1,6 +1,4 @@
-import 'package:ecommerce/app/domain/entities/product_entity.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 
 class CustomProductCard extends StatelessWidget {
   final ProductEntity? product;

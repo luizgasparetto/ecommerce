@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:iconly/iconly.dart';
-
-import '../../../blocs/auth_bloc/auth_bloc.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

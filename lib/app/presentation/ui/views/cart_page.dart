@@ -1,9 +1,4 @@
-import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
-import 'package:ecommerce/app/presentation/ui/widgets/custom_elevated_button.dart';
-import 'package:ecommerce/app/presentation/ui/widgets/custom_product_tile.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);

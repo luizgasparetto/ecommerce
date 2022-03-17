@@ -1,14 +1,4 @@
-import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:ecommerce/app/presentation/blocs/cart_bloc/cart_bloc.dart';
-import 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_product_list_bloc.dart';
-import 'package:ecommerce/app/presentation/ui/widgets/custom_filter_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:get_it/get_it.dart';
-import 'package:iconly/iconly.dart';
-
-import '../widgets/custom_product_card.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -65,6 +55,7 @@ class HomePage extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () async {
+                            cartBloc.add(GetCartProductsEvent());
                             authBloc.add(GetUserEvent());
                             Navigator.pushNamed(context, '/usr');
                           },

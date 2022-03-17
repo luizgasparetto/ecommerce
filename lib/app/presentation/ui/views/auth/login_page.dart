@@ -1,6 +1,4 @@
-import 'package:ecommerce/app/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

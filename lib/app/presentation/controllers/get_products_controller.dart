@@ -1,5 +1,4 @@
-import 'package:ecommerce/app/domain/entities/product_entity.dart';
-import 'package:ecommerce/app/domain/usecases/get_product_list/get_product_list_usecase.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 
 class GetProductsController {
   final GetProductListUsecase _getProductListUsecase;
