@@ -43,6 +43,8 @@ dependencies:
   flutter_vector_icons: ^1.0.0
   iconly: ^1.0.1
   lottie: ^1.2.2
+  flip_card: ^0.6.0
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

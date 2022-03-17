@@ -25,7 +25,7 @@ class UserMainPage extends StatelessWidget {
               } else if (state is AuthGetUserState) {
                 final user = state.user;
                 return Padding(
-                  padding: EdgeInsets.only(top: height * 0.1),
+                  padding: EdgeInsets.only(top: height * 0),
                   child: Column(
                     children: [
                       CustomUserTile(
@@ -54,8 +54,16 @@ class UserMainPage extends StatelessWidget {
                       const CustomUserTile(
                         mainIcon: MaterialCommunityIcons.map_marker,
                         title: 'Delivery Address',
+                        trailingIcon: MaterialCommunityIcons.arrow_right,
                       ),
-                      SizedBox(height: height * 0.04),
+                      SizedBox(height: height * 0.015),
+                      CustomUserTile(
+                        mainIcon: MaterialCommunityIcons.credit_card,
+                        title: 'Credit Cards',
+                        trailingIcon: MaterialCommunityIcons.arrow_right,
+                        onPressedFuntion: () {},
+                      ),
+                      SizedBox(height: height * 0.08),
                       CustomElevatedButton(
                         buttonTitle: 'Logout',
                         paddingValue: 16,

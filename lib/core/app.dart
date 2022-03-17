@@ -1,5 +1,5 @@
+import 'package:ecommerce/app/presentation/blocs/credit_card_bloc/credit_card_bloc.dart';
 import 'exports/exports.dart';
-
 import '../app/presentation/ui/views/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AuthBloc>(create: (context) => GetIt.I.get<AuthBloc>()),
         BlocProvider<CartBloc>(create: (context) => GetIt.I.get<CartBloc>()),
+        BlocProvider<CreditCardBloc>(
+          create: (context) => GetIt.I.get<CreditCardBloc>(),
+        )
       ],
       child: MaterialApp(
         title: 'Ecommerce',

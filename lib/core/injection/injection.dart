@@ -1,3 +1,11 @@
+import 'package:ecommerce/app/domain/repositories/credit_card_repository.dart';
+import 'package:ecommerce/app/domain/usecases/credit_card_usecase/credit_card_usecase.dart';
+import 'package:ecommerce/app/domain/usecases/credit_card_usecase/credit_card_usecase_imp.dart';
+import 'package:ecommerce/app/external/datasources/credit_card_datasource_imp.dart';
+import 'package:ecommerce/app/infra/datasources/credit_card_datasource.dart';
+import 'package:ecommerce/app/infra/repositories/credit_card_repository_imp.dart';
+import 'package:ecommerce/app/presentation/blocs/credit_card_bloc/credit_card_bloc.dart';
+import 'package:ecommerce/app/presentation/controllers/credit_card_controller.dart';
 import 'package:ecommerce/core/exports/exports.dart';
 
 class Injection {
@@ -10,8 +18,16 @@ class Injection {
 
     getIt.registerLazySingleton<UserDatasource>(
       () => UserDatasourceImp(
-          firebaseFirestore: FirebaseFirestore.instance,
-          firebaseAuth: FirebaseAuth.instance),
+        firebaseFirestore: FirebaseFirestore.instance,
+        firebaseAuth: FirebaseAuth.instance,
+      ),
+    );
+
+    getIt.registerLazySingleton<CreditCardDatasource>(
+      () => CreditCardDatasourceImp(
+        firebaseFirestore: FirebaseFirestore.instance,
+        firebaseAuth: FirebaseAuth.instance,
+      ),
     );
 
     //repositories
@@ -27,6 +43,9 @@ class Injection {
     getIt.registerLazySingleton<CartRepository>(
         () => CartRepositoryImp(getIt()));
 
+    getIt.registerLazySingleton<CreditCardRepository>(
+        () => CreditCardRepositoryImp(getIt()));
+
     //usecases
     getIt.registerLazySingleton<GetProductListUsecase>(
         () => GetProductListUsecaseImp(getIt()));
@@ -36,9 +55,16 @@ class Injection {
 
     getIt.registerLazySingleton<CartUsecase>(() => CartUsecaseImp(getIt()));
 
+    getIt.registerLazySingleton<CreditCardUsecase>(
+        () => CreditCardUsecaseImp(getIt()));
+
     //controllers
     getIt.registerSingleton<GetProductsController>(
       GetProductsController(getIt()),
+    );
+
+    getIt.registerSingleton<CreditCardController>(
+      CreditCardController(getIt()),
     );
 
     //blocs
@@ -49,5 +75,7 @@ class Injection {
     getIt.registerSingleton<AuthBloc>(AuthBloc(getIt(), getIt()));
 
     getIt.registerSingleton<CartBloc>(CartBloc(getIt()));
+
+    getIt.registerSingleton<CreditCardBloc>(CreditCardBloc(getIt()));
   }
 }

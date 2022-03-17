@@ -7,6 +7,7 @@ class CustomUserTile extends StatelessWidget {
   final IconData? trailingIcon;
   final String title;
   final String? subtitle;
+  final void Function()? onPressedFuntion;
 
   const CustomUserTile({
     Key? key,
@@ -16,6 +17,7 @@ class CustomUserTile extends StatelessWidget {
     this.mainIconSize = 0.05,
     required this.title,
     this.subtitle,
+    this.onPressedFuntion,
   }) : super(key: key);
 
   @override
@@ -38,9 +40,12 @@ class CustomUserTile extends StatelessWidget {
       ),
       subtitle: subtitle != null ? Text(subtitle!) : null,
       tileColor: Colors.white,
-      trailing: Icon(
-        trailingIcon,
-        color: Theme.of(context).primaryColorDark,
+      trailing: IconButton(
+        icon: Icon(
+          trailingIcon,
+          color: Theme.of(context).primaryColorDark,
+        ),
+        onPressed: onPressedFuntion ?? () {},
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     );

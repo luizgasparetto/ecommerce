@@ -29,19 +29,6 @@ class HomePage extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: Icon(
-                            MaterialCommunityIcons.logout,
-                            size: height * 0.04,
-                          ),
-                          onPressed: () {
-                            authBloc.add(LogoutEvent());
-                            Future.delayed(const Duration(milliseconds: 500),
-                                () {
-                              Navigator.pop(context);
-                            });
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(
                             MaterialCommunityIcons.cart,
                             size: height * 0.04,
                           ),
@@ -55,7 +42,6 @@ class HomePage extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () async {
-                            cartBloc.add(GetCartProductsEvent());
                             authBloc.add(GetUserEvent());
                             Navigator.pushNamed(context, '/usr');
                           },
