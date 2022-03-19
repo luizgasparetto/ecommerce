@@ -53,7 +53,7 @@ class RegisterCreditCardFront extends StatelessWidget {
                     cardNumber.isEmpty ? "1111 1111 1111 1111" : cardNumber,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white.withOpacity(0.6),
+                      color: Colors.white.withOpacity(0.8),
                       fontSize: MediaQuery.of(context).textScaleFactor * 22,
                     ),
                   ),
@@ -83,7 +83,7 @@ class RegisterCreditCardFront extends StatelessWidget {
                         cardName.isEmpty ? "Jaime Scoot" : cardName,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white.withOpacity(0.6),
+                          color: Colors.white.withOpacity(0.8),
                           fontSize: MediaQuery.of(context).textScaleFactor * 18,
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -105,7 +105,7 @@ class RegisterCreditCardFront extends StatelessWidget {
                         expirationDate.isEmpty ? "00/00" : expirationDate,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white.withOpacity(0.6),
+                          color: Colors.white.withOpacity(0.8),
                           fontSize: MediaQuery.of(context).textScaleFactor * 18,
                         ),
                         overflow: TextOverflow.ellipsis,

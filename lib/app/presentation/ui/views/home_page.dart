@@ -27,6 +27,19 @@ class HomePage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        // IconButton(
+                        //   icon: Icon(
+                        //     MaterialCommunityIcons.logout,
+                        //     size: height * 0.04,
+                        //   ),
+                        //   onPressed: () {
+                        //     authBloc.add(LogoutEvent());
+                        //     Future.delayed(const Duration(milliseconds: 500),
+                        //         () {
+                        //       Navigator.pop(context);
+                        //     });
+                        //   },
+                        // ),
                         IconButton(
                           icon: Icon(
                             MaterialCommunityIcons.cart,

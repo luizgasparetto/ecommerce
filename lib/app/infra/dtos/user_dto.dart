@@ -7,8 +7,8 @@ import 'package:ecommerce/app/domain/entities/user_entity.dart';
 class UserDTO extends UserEntity {
   final String name;
   final String email;
-  final List<ProductEntity> cartItems;
-  final List<CreditCardEntity> creditCards;
+  final List<dynamic> cartItems;
+  final List<dynamic> creditCards;
 
   UserDTO({
     required this.name,
@@ -35,12 +35,8 @@ class UserDTO extends UserEntity {
     return UserDTO(
       name: map?['name'] ?? '',
       email: map?['email'] ?? '',
-      cartItems: List<ProductEntity>.from(
-        map?['cartItems'] ?? <ProductEntity>[],
-      ),
-      creditCards: List<CreditCardEntity>.from(
-        map?['creditCards'] ?? <CreditCardEntity>[],
-      ),
+      cartItems: map?['cartItems'] ?? <ProductEntity>[],
+      creditCards: map?['creditCards'] ?? <CreditCardEntity>[],
     );
   }
 }

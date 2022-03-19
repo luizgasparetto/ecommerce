@@ -1,6 +1,7 @@
 import 'package:ecommerce/app/presentation/blocs/credit_card_bloc/credit_card_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/views/credit_card/register_credit_card_page.dart';
 import 'package:ecommerce/app/presentation/ui/views/credit_card/credit_cards_page.dart';
+import 'package:ecommerce/app/presentation/ui/views/location_page.dart';
 import 'exports/exports.dart';
 import '../app/presentation/ui/views/home_page.dart';
 
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           '/register': (context) => const RegisterPage(),
           '/credit_cards': (context) => const CreditCardsPage(),
           '/register_credit_cards': (context) => const RegisterCreditCardPage(),
+          '/location': (context) => const LocationPage(),
         },
         home: GetIt.I.get<AuthRepository>().getLandingPage(context),
       ),

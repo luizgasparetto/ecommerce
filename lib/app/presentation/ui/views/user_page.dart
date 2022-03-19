@@ -27,7 +27,7 @@ class UserPage extends StatelessWidget {
               } else if (state is AuthGetUserState) {
                 final user = state.user;
                 return Padding(
-                  padding: EdgeInsets.only(top: height * 0),
+                  padding: EdgeInsets.only(top: height * 0.04),
                   child: Column(
                     children: [
                       CustomUserTile(
@@ -53,10 +53,13 @@ class UserPage extends StatelessWidget {
                         trailingIcon: MaterialCommunityIcons.arrow_right,
                       ),
                       SizedBox(height: height * 0.04),
-                      const CustomUserTile(
+                      CustomUserTile(
                         mainIcon: MaterialCommunityIcons.map_marker,
                         title: 'Delivery Address',
                         trailingIcon: MaterialCommunityIcons.arrow_right,
+                        onPressedFuntion: () {
+                          Navigator.pushNamed(context, '/location');
+                        },
                       ),
                       SizedBox(height: height * 0.015),
                       CustomUserTile(

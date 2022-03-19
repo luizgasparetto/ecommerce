@@ -46,7 +46,7 @@ class RegisterCreditCardBack extends StatelessWidget {
                         cvvCode.isEmpty ? "091" : cvvCode,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white.withOpacity(0.6),
+                          color: Colors.white.withOpacity(0.8),
                           fontSize: MediaQuery.of(context).textScaleFactor * 18,
                         ),
                         textAlign: TextAlign.center,
@@ -62,7 +62,7 @@ class RegisterCreditCardBack extends StatelessWidget {
                 "If you have any questions regarding your card, please don't hesitate to contact us immediately, our support is available 24 hours a day.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withOpacity(0.8),
                   fontSize: MediaQuery.of(context).textScaleFactor * 12,
                 ),
               ),
