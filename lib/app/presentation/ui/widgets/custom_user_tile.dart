@@ -25,29 +25,29 @@ class CustomUserTile extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    return ListTile(
-      leading: Padding(
-        padding: EdgeInsets.only(left: width * leftPadding),
-        child: Icon(
-          mainIcon,
-          color: Theme.of(context).primaryColorDark,
-          size: height * mainIconSize,
+    return InkWell(
+      child: ListTile(
+        leading: Padding(
+          padding: EdgeInsets.only(left: width * leftPadding),
+          child: Icon(
+            mainIcon,
+            color: Theme.of(context).primaryColorDark,
+            size: height * mainIconSize,
+          ),
         ),
-      ),
-      title: Text(
-        title,
-        style: TextStyle(color: Theme.of(context).primaryColorDark),
-      ),
-      subtitle: subtitle != null ? Text(subtitle!) : null,
-      tileColor: Colors.white,
-      trailing: IconButton(
-        icon: Icon(
+        title: Text(
+          title,
+          style: TextStyle(color: Theme.of(context).primaryColorDark),
+        ),
+        subtitle: subtitle != null ? Text(subtitle!) : null,
+        tileColor: Colors.white,
+        trailing: Icon(
           trailingIcon,
           color: Theme.of(context).primaryColorDark,
         ),
-        onPressed: onPressedFuntion ?? () {},
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      onTap: onPressedFuntion ?? () {},
     );
   }
 }

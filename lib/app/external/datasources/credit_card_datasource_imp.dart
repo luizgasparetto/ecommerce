@@ -1,4 +1,3 @@
-import 'package:ecommerce/app/domain/entities/credit_card_entity.dart';
 import 'package:ecommerce/app/infra/datasources/credit_card_datasource.dart';
 import 'package:ecommerce/core/exports/exports.dart';
 
@@ -13,7 +12,7 @@ class CreditCardDatasourceImp implements CreditCardDatasource {
         _firebaseAuth = firebaseAuth;
 
   @override
-  Future<List<Map<String, dynamic>>> getCreditCards() async {
+  Future<List> getCreditCards() async {
     final user = await _firebaseFirestore
         .collection('users')
         .doc(_firebaseAuth.currentUser!.uid)

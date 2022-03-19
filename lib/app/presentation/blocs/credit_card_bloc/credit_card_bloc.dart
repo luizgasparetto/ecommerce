@@ -14,9 +14,12 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
     on<GetCreditCardsEvent>((event, emit) async {
       try {
         final creditCards = await _creditCardController.getCreditCards();
-        emit(CreditCardLoadedState(creditCards));
-      } catch (e) {
+        creditCards.isNotEmpty
+            ? emit(CreditCardLoadedState(creditCards))
+            : emit(const CreditCardEmptyState('AINDA NÃO HÁ CARTÕES'));
+      } catch (e, st) {
         emit(CreditCardErrorState());
+        dev.log('ERRO AO CARREGAR CARTÕES', error: e, stackTrace: st);
       }
     });
 

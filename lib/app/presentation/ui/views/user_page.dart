@@ -1,7 +1,7 @@
 import 'package:ecommerce/core/exports/exports.dart';
 
-class UserMainPage extends StatelessWidget {
-  const UserMainPage({Key? key}) : super(key: key);
+class UserPage extends StatelessWidget {
+  const UserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,9 @@ class UserMainPage extends StatelessWidget {
                         mainIcon: MaterialCommunityIcons.credit_card,
                         title: 'Credit Cards',
                         trailingIcon: MaterialCommunityIcons.arrow_right,
-                        onPressedFuntion: () {},
+                        onPressedFuntion: () {
+                          Navigator.pushNamed(context, '/credit_cards');
+                        },
                       ),
                       SizedBox(height: height * 0.08),
                       CustomElevatedButton(

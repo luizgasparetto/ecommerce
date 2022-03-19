@@ -18,4 +18,13 @@ class CreditCardLoadedState extends CreditCardState {
   List<Object> get props => [creditCards];
 }
 
+class CreditCardEmptyState extends CreditCardState {
+  final String message;
+
+  const CreditCardEmptyState(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
 class CreditCardErrorState extends CreditCardState {}
