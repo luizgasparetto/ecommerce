@@ -119,8 +119,9 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     authBloc.add(
                       SignInEvent(
-                          email: _emailController.text,
-                          password: _passwordController.text),
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      ),
                     );
                   }),
             ),
@@ -131,7 +132,9 @@ class _LoginPageState extends State<LoginPage> {
                 const Text("Don't have an account?"),
                 TextButton(
                   child: const Text('Sign Up!'),
-                  onPressed: () => Navigator.pushNamed(context, '/register'),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/register');
+                  },
                 )
               ],
             ),

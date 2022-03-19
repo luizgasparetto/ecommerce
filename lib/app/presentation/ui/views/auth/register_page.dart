@@ -144,9 +144,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           password: _passwordController.text,
                         ),
                       );
-                      Future.delayed(const Duration(seconds: 1), () {
-                        Navigator.pop(context);
-                      });
                     }),
               ),
               SizedBox(height: height * 0.015),
@@ -156,7 +153,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   const Text("Already have an account?"),
                   TextButton(
                     child: const Text('Sign In!'),
-                    onPressed: () {},
+                    onPressed: () =>
+                        Navigator.pushReplacementNamed(context, '/login'),
                   )
                 ],
               ),

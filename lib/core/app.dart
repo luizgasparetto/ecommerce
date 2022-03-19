@@ -1,6 +1,6 @@
 import 'package:ecommerce/app/presentation/blocs/credit_card_bloc/credit_card_bloc.dart';
-import 'package:ecommerce/app/presentation/ui/views/auth/register_credit_card_page.dart';
-import 'package:ecommerce/app/presentation/ui/views/credit_cards_page.dart';
+import 'package:ecommerce/app/presentation/ui/views/credit_card/register_credit_card_page.dart';
+import 'package:ecommerce/app/presentation/ui/views/credit_card/credit_cards_page.dart';
 import 'exports/exports.dart';
 import '../app/presentation/ui/views/home_page.dart';
 

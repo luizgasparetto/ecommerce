@@ -69,6 +69,7 @@ class UserPage extends StatelessWidget {
                       CustomElevatedButton(
                         buttonTitle: 'Logout',
                         paddingValue: 16,
+                        width: double.infinity,
                         onPressedFunction: () {
                           authBloc.add(LogoutEvent());
                           Future.delayed(const Duration(milliseconds: 500), () {
