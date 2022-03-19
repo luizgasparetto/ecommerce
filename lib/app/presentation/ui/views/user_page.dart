@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/presentation/blocs/credit_card_bloc/credit_card_bloc.dart';
 import 'package:ecommerce/core/exports/exports.dart';
 
 class UserPage extends StatelessWidget {
@@ -7,6 +8,7 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final authBloc = context.read<AuthBloc>();
+    final creditCardsBloc = GetIt.I.get<CreditCardBloc>();
 
     return Scaffold(
       appBar: AppBar(
@@ -62,7 +64,10 @@ class UserPage extends StatelessWidget {
                         title: 'Credit Cards',
                         trailingIcon: MaterialCommunityIcons.arrow_right,
                         onPressedFuntion: () {
-                          Navigator.pushNamed(context, '/credit_cards');
+                          creditCardsBloc.add(GetCreditCardsEvent());
+                          Future.delayed(const Duration(milliseconds: 200), () {
+                            Navigator.pushNamed(context, '/credit_cards');
+                          });
                         },
                       ),
                       SizedBox(height: height * 0.08),

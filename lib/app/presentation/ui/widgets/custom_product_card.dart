@@ -16,6 +16,8 @@ class CustomProductCard extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    final cartBloc = GetIt.I.get<CartBloc>();
+
     return InkWell(
       child: Container(
         width: width * 0.4,
@@ -63,7 +65,13 @@ class CustomProductCard extends StatelessWidget {
                       ),
                       InkWell(
                         child: const Icon(MaterialCommunityIcons.cart),
-                        onTap: () {},
+                        onTap: () {
+                          cartBloc.add(AddProductInCartEvent(product!));
+                          Future.delayed(const Duration(milliseconds: 700), () {
+                            cartBloc.add(GetCartProductsEvent());
+                            Navigator.pushNamed(context, '/cart');
+                          });
+                        },
                       )
                     ],
                   ),

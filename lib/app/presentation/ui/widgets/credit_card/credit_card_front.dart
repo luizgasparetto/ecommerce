@@ -4,13 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CreditCardFront extends StatelessWidget {
   final String fullName;
   final String cardNumber;
-  final String expirationCode;
+  final String expirationDate;
 
   const CreditCardFront({
     Key? key,
     required this.fullName,
     required this.cardNumber,
-    required this.expirationCode,
+    required this.expirationDate,
   }) : super(key: key);
 
   @override
@@ -68,7 +68,7 @@ class CreditCardFront extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      expirationCode,
+                      expirationDate,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: const Color.fromARGB(255, 243, 239, 239),

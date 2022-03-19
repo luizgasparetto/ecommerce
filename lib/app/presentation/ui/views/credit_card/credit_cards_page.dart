@@ -67,7 +67,7 @@ class CreditCardsPage extends StatelessWidget {
                         front: CreditCardFront(
                           fullName: creditCard.fullName,
                           cardNumber: creditCard.cardNumber,
-                          expirationCode: creditCard.expirationDate,
+                          expirationDate: creditCard.expirationDate,
                         ),
                         back: CreditCardBack(
                           cvvCode: creditCard.cvvCode,

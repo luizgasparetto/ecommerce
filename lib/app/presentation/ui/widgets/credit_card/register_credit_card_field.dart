@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/exports/exports.dart';
+import 'package:flutter/services.dart';
 
 class RegisterCreditCardField extends StatelessWidget {
   final String labelText;
@@ -10,6 +11,9 @@ class RegisterCreditCardField extends StatelessWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final void Function()? onTapFunction;
   final void Function(String)? onChangedFunction;
+  final TextInputType textInputType;
+  final List<TextInputFormatter>? inputFormatters;
+  final int? maxLenght;
 
   const RegisterCreditCardField({
     Key? key,
@@ -22,6 +26,9 @@ class RegisterCreditCardField extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.start,
     required this.onTapFunction,
     required this.onChangedFunction,
+    required this.textInputType,
+    this.inputFormatters,
+    this.maxLenght,
   }) : super(key: key);
 
   @override
@@ -60,6 +67,9 @@ class RegisterCreditCardField extends StatelessWidget {
             validator: validatorFunction,
             onTap: onTapFunction,
             onChanged: onChangedFunction,
+            keyboardType: textInputType,
+            inputFormatters: inputFormatters,
+            maxLength: maxLenght,
           ),
         ),
         SizedBox(height: height * 0.025),
