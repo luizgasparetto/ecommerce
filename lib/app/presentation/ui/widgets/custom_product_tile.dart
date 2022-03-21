@@ -27,7 +27,7 @@ class CustomProductTile extends StatelessWidget {
           ),
           SizedBox(width: width * 0.02),
           SizedBox(
-            width: width * 0.48,
+            width: width * 0.45,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,7 @@ class CustomProductTile extends StatelessWidget {
             icon: Icon(
               CupertinoIcons.trash_fill,
               color: Theme.of(context).primaryColorDark,
-              size: height * 0.027,
+              size: height * 0.03,
             ),
             onPressed: () {
               cartBloc.add(DeleteCartProductEvent(product));

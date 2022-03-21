@@ -12,14 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(create: (context) => GetIt.I.get<AuthBloc>()),
+        BlocProvider<AuthBloc>(create: (_) => GetIt.I.get<AuthBloc>()),
         BlocProvider<GetProductListBloc>(
-          create: (context) => GetIt.I.get<GetProductListBloc>()
+          create: (_) => GetIt.I.get<GetProductListBloc>()
             ..add(const FetchProductListBySearchBarEvent()),
         ),
-        BlocProvider<CartBloc>(create: (context) => GetIt.I.get<CartBloc>()),
+        BlocProvider<CartBloc>(create: (_) => GetIt.I.get<CartBloc>()),
         BlocProvider<CreditCardBloc>(
-          create: (context) =>
+          create: (_) =>
               GetIt.I.get<CreditCardBloc>()..add(GetCreditCardsEvent()),
         )
       ],

@@ -32,6 +32,13 @@ class CartUsecaseImp implements CartUsecase {
 
   @override
   Future<double> getCartTotalValue() async {
-    return await _cartRepository.getCartTotalValue();
+    final cartProductList = await _cartRepository.getCartProducts();
+    double total = 0.0;
+
+    for (var product in cartProductList) {
+      total += product.value;
+    }
+
+    return total;
   }
 }

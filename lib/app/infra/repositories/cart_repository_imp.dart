@@ -1,32 +1,20 @@
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:ecommerce/app/domain/repositories/cart_repository.dart';
-import 'package:ecommerce/app/infra/datasources/user_datasource.dart';
+import 'package:ecommerce/app/infra/datasources/cart_datasource.dart';
 import 'package:ecommerce/app/infra/dtos/product_dto.dart';
 
 class CartRepositoryImp implements CartRepository {
-  final UserDatasource _userDatasource;
+  final CartDatasource _cartDatasource;
 
-  CartRepositoryImp(this._userDatasource);
+  CartRepositoryImp(this._cartDatasource);
 
   @override
   Future<List<ProductEntity>> getCartProducts() async {
-    final fireStoreCartList = await _userDatasource.getCartItems();
+    final fireStoreCartList = await _cartDatasource.getCartItems();
 
     return fireStoreCartList
         .map((product) => ProductDTO.fromMap(product))
         .toList();
-  }
-
-  @override
-  Future<double> getCartTotalValue() async {
-    final cartProductList = await getCartProducts();
-    double total = 0.0;
-
-    for (var product in cartProductList) {
-      total += product.value;
-    }
-
-    return total;
   }
 
   @override
@@ -39,7 +27,7 @@ class CartRepositoryImp implements CartRepository {
       size: product.size,
     );
 
-    return await _userDatasource.addCartItem(productJson.toMap());
+    return await _cartDatasource.addCartItem(productJson.toMap());
   }
 
   @override
@@ -52,6 +40,6 @@ class CartRepositoryImp implements CartRepository {
       size: product.size,
     );
 
-    return await _userDatasource.deleteCartItem(productJson.toMap());
+    return await _cartDatasource.deleteCartItem(productJson.toMap());
   }
 }

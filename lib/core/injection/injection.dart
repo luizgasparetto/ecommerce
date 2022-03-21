@@ -1,7 +1,9 @@
 import 'package:ecommerce/app/domain/repositories/credit_card_repository.dart';
 import 'package:ecommerce/app/domain/usecases/credit_card_usecase/credit_card_usecase.dart';
 import 'package:ecommerce/app/domain/usecases/credit_card_usecase/credit_card_usecase_imp.dart';
+import 'package:ecommerce/app/external/datasources/cart_datasource_imp.dart';
 import 'package:ecommerce/app/external/datasources/credit_card_datasource_imp.dart';
+import 'package:ecommerce/app/infra/datasources/cart_datasource.dart';
 import 'package:ecommerce/app/infra/datasources/credit_card_datasource.dart';
 import 'package:ecommerce/app/infra/repositories/credit_card_repository_imp.dart';
 import 'package:ecommerce/app/presentation/blocs/credit_card_bloc/credit_card_bloc.dart';
@@ -18,6 +20,13 @@ class Injection {
 
     getIt.registerLazySingleton<UserDatasource>(
       () => UserDatasourceImp(
+        firebaseFirestore: FirebaseFirestore.instance,
+        firebaseAuth: FirebaseAuth.instance,
+      ),
+    );
+
+    getIt.registerLazySingleton<CartDatasource>(
+      () => CartDatasourceImp(
         firebaseFirestore: FirebaseFirestore.instance,
         firebaseAuth: FirebaseAuth.instance,
       ),

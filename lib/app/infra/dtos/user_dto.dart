@@ -7,18 +7,18 @@ import 'package:ecommerce/app/domain/entities/user_entity.dart';
 class UserDTO extends UserEntity {
   final String name;
   final String email;
-  final List<dynamic> cartItems;
+  final List<dynamic> cartProducts;
   final List<dynamic> creditCards;
 
   UserDTO({
     required this.name,
     required this.email,
-    required this.cartItems,
+    required this.cartProducts,
     required this.creditCards,
   }) : super(
           name: name,
           email: email,
-          cartItems: cartItems,
+          cartProducts: cartProducts,
           creditCards: creditCards,
         );
 
@@ -26,7 +26,7 @@ class UserDTO extends UserEntity {
     return {
       'name': name,
       'email': email,
-      'cartItems': cartItems,
+      'cartItems': cartProducts,
       'creditCards': creditCards
     };
   }
@@ -35,7 +35,7 @@ class UserDTO extends UserEntity {
     return UserDTO(
       name: map?['name'] ?? '',
       email: map?['email'] ?? '',
-      cartItems: map?['cartItems'] ?? <ProductEntity>[],
+      cartProducts: map?['cartProducts'] ?? <ProductEntity>[],
       creditCards: map?['creditCards'] ?? <CreditCardEntity>[],
     );
   }
