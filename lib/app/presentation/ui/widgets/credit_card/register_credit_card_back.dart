@@ -16,7 +16,7 @@ class RegisterCreditCardBack extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
-        height: height * 0.25,
+        height: height * 0.28,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColorDark,
@@ -45,7 +45,7 @@ class RegisterCreditCardBack extends StatelessWidget {
                       child: Text(
                         cvvCode.isEmpty ? "091" : cvvCode,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          //fontWeight: FontWeight.bold,
                           color: Colors.white.withOpacity(0.8),
                           fontSize: MediaQuery.of(context).textScaleFactor * 18,
                         ),

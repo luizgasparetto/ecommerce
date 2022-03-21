@@ -21,7 +21,7 @@ class RegisterCreditCardFront extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
-        height: height * 0.25,
+        height: height * 0.28,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColorDark,
@@ -34,11 +34,10 @@ class RegisterCreditCardFront extends StatelessWidget {
               SvgPicture.asset(
                 'assets/svg/visa.svg',
                 height: height * 0.1,
-                color: Colors.white.withOpacity(0.6),
+                color: Colors.white.withOpacity(0.8),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(top: height * 0.09, left: width * 0.03),
+                padding: EdgeInsets.only(top: height * 0.1, left: width * 0.03),
                 child: Container(
                   width: width * 0.60,
                   height: height * 0.04,
@@ -52,7 +51,7 @@ class RegisterCreditCardFront extends StatelessWidget {
                   child: Text(
                     cardNumber.isEmpty ? "1111 1111 1111 1111" : cardNumber,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      //fontWeight: FontWeight.bold,
                       color: Colors.white.withOpacity(0.8),
                       fontSize: MediaQuery.of(context).textScaleFactor * 22,
                     ),
@@ -61,7 +60,7 @@ class RegisterCreditCardFront extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: height * 0.16,
+                  top: height * 0.18,
                   left: width * 0.03,
                   right: width * 0.03,
                 ),
@@ -82,7 +81,7 @@ class RegisterCreditCardFront extends StatelessWidget {
                       child: Text(
                         cardName.isEmpty ? "Jaime Scoot" : cardName,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          //fontWeight: FontWeight.bold,
                           color: Colors.white.withOpacity(0.8),
                           fontSize: MediaQuery.of(context).textScaleFactor * 18,
                         ),
@@ -104,7 +103,7 @@ class RegisterCreditCardFront extends StatelessWidget {
                       child: Text(
                         expirationDate.isEmpty ? "00/00" : expirationDate,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          //fontWeight: FontWeight.bold,
                           color: Colors.white.withOpacity(0.8),
                           fontSize: MediaQuery.of(context).textScaleFactor * 18,
                         ),

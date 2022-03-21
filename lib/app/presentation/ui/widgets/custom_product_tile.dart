@@ -54,16 +54,17 @@ class CustomProductTile extends StatelessWidget {
                   '\$ ${product.value.toStringAsFixed(2)}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).textScaleFactor * 20,
+                    fontSize: MediaQuery.of(context).textScaleFactor * 18,
                   ),
                 ),
               ],
             ),
           ),
           IconButton(
-            icon: const Icon(
+            icon: Icon(
               CupertinoIcons.trash_fill,
-              color: Colors.red,
+              color: Theme.of(context).primaryColorDark,
+              size: height * 0.027,
             ),
             onPressed: () {
               cartBloc.add(DeleteCartProductEvent(product));

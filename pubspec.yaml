@@ -39,9 +39,8 @@ dependencies:
   cloud_firestore: ^3.1.10
   flutter_bloc: ^8.0.1
   get_it: ^7.2.0
+  dio: ^4.0.4
   equatable: ^2.0.3
-  google_maps_flutter: ^2.1.2
-  mocktail: ^0.3.0
   flutter_vector_icons: ^1.0.0
   iconly: ^1.0.1
   lottie: ^1.2.2

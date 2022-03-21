@@ -1,24 +1,11 @@
 import 'package:ecommerce/core/exports/exports.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class RegisterPage extends StatelessWidget {
+  RegisterPage({Key? key}) : super(key: key);
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
-  late TextEditingController _nameController;
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
-
-  @override
-  void initState() {
-    _nameController = TextEditingController();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
-    super.initState();
-  }
+  final ValueNotifier _nameNotifier = ValueNotifier("");
+  final ValueNotifier _emailNotifier = ValueNotifier("");
+  final ValueNotifier _passwordNotifier = ValueNotifier("");
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +52,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     SizedBox(height: height * 0.05),
                     TextField(
-                      controller: _nameController,
                       decoration: InputDecoration(
                         filled: true,
                         border: OutlineInputBorder(
@@ -79,10 +65,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintText: 'Full Name',
                       ),
                       keyboardType: TextInputType.emailAddress,
+                      onChanged: (value) => _nameNotifier.value = value,
                     ),
                     SizedBox(height: height * 0.015),
                     TextField(
-                      controller: _emailController,
                       decoration: InputDecoration(
                         filled: true,
                         border: OutlineInputBorder(
@@ -92,14 +78,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             style: BorderStyle.none,
                           ),
                         ),
-                        prefixIcon: const Icon(MaterialCommunityIcons.email),
-                        hintText: 'Email',
+                        prefixIcon: const Icon(MaterialCommunityIcons.at),
+                        hintText: 'E-mail',
                       ),
                       keyboardType: TextInputType.emailAddress,
+                      onChanged: (value) => _emailNotifier.value = value,
                     ),
                     SizedBox(height: height * 0.015),
                     TextField(
-                      controller: _passwordController,
                       decoration: InputDecoration(
                         filled: true,
                         border: OutlineInputBorder(
@@ -113,6 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintText: 'Password',
                       ),
                       obscureText: true,
+                      onChanged: (value) => _passwordNotifier.value = value,
                     ),
                   ],
                 ),
@@ -139,9 +126,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: () async {
                       authBloc.add(
                         SignUpEvent(
-                          name: _nameController.text,
-                          email: _emailController.text,
-                          password: _passwordController.text,
+                          name: _nameNotifier.value,
+                          email: _emailNotifier.value,
+                          password: _passwordNotifier.value,
                         ),
                       );
                     }),

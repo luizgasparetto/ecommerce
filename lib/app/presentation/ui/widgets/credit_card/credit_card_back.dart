@@ -16,7 +16,7 @@ class CreditCardBack extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
-        height: height * 0.25,
+        height: height * 0.28,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColorDark,
@@ -29,7 +29,7 @@ class CreditCardBack extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: height * 0.07,
-                color: Colors.grey.shade500,
+                color: Colors.grey.shade600,
                 child: Padding(
                   padding: EdgeInsets.only(right: width * 0.08),
                   child: Align(

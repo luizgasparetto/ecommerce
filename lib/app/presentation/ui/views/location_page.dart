@@ -1,5 +1,4 @@
 import 'package:ecommerce/core/exports/exports.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationPage extends StatelessWidget {
   const LocationPage({Key? key}) : super(key: key);
@@ -7,21 +6,13 @@ class LocationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
+      ),
       body: Stack(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            child: const GoogleMap(
-              myLocationEnabled: true,
-              myLocationButtonEnabled: true,
-              initialCameraPosition: CameraPosition(
-                target: LatLng(10, 10),
-                zoom: 10,
-              ),
-            ),
-          )
-        ],
+        children: const [],
       ),
     );
   }

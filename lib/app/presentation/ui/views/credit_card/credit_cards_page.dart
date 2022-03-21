@@ -63,17 +63,20 @@ class CreditCardsPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final creditCard = creditCards[index];
 
-                      return FlipCard(
-                        front: CreditCardFront(
-                          fullName: creditCard.fullName,
-                          cardNumber: creditCard.cardNumber,
-                          expirationDate: creditCard.expirationDate,
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: height * 0.015),
+                        child: FlipCard(
+                          front: CreditCardFront(
+                            fullName: creditCard.fullName,
+                            cardNumber: creditCard.cardNumber,
+                            expirationDate: creditCard.expirationDate,
+                          ),
+                          back: CreditCardBack(
+                            cvvCode: creditCard.cvvCode,
+                          ),
+                          fill: Fill.fillBack,
+                          speed: 600,
                         ),
-                        back: CreditCardBack(
-                          cvvCode: creditCard.cvvCode,
-                        ),
-                        fill: Fill.fillBack,
-                        speed: 600,
                       );
                     },
                   );

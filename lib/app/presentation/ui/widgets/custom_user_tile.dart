@@ -11,7 +11,7 @@ class CustomUserTile extends StatelessWidget {
 
   const CustomUserTile({
     Key? key,
-    this.leftPadding = 0.03,
+    this.leftPadding = 0.04,
     this.trailingIcon,
     required this.mainIcon,
     this.mainIconSize = 0.05,

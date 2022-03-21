@@ -18,19 +18,10 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
   final _formKey = GlobalKey<FormState>();
   final cardKey = GlobalKey<FlipCardState>();
 
-  late TextEditingController _fullNameController;
-  late TextEditingController _cardNumberController;
-  late TextEditingController _expirationDateController;
-  late TextEditingController _cvvCodeController;
-
-  @override
-  void initState() {
-    _fullNameController = TextEditingController();
-    _cardNumberController = TextEditingController();
-    _expirationDateController = TextEditingController();
-    _cvvCodeController = TextEditingController();
-    super.initState();
-  }
+  final ValueNotifier nameNotifier = ValueNotifier("");
+  final ValueNotifier cardNumberNotifier = ValueNotifier("");
+  final ValueNotifier expirationDateNotifier = ValueNotifier("");
+  final ValueNotifier cvvNotifier = ValueNotifier("");
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +45,19 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
               FlipCard(
                 key: cardKey,
                 front: RegisterCreditCardFront(
-                  cardNumber: _cardNumberController.text,
-                  cardName: _fullNameController.text,
-                  expirationDate: _expirationDateController.text,
+                  cardNumber: cardNumberNotifier.value,
+                  cardName: nameNotifier.value,
+                  expirationDate: expirationDateNotifier.value,
                 ),
-                back: RegisterCreditCardBack(cvvCode: _cvvCodeController.text),
+                back: ValueListenableBuilder(
+                  valueListenable: cvvNotifier,
+                  builder: (context, value, child) {
+                    return RegisterCreditCardBack(cvvCode: value.toString());
+                  },
+                ),
               ),
               SizedBox(height: height * 0.01),
-              const Text("This is just your credit card preview"),
+              // const Text("This is just your credit card preview"),
               SizedBox(height: height * 0.02),
               Form(
                 key: _formKey,
@@ -73,18 +69,13 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                       hintText: 'Jaime Scott',
                       icon: IconlyBold.profile,
                       textInputType: TextInputType.name,
-                      controller: _fullNameController,
                       validatorFunction: (value) {
                         if (value!.isEmpty) {
                           return "Fill in the name correctly";
                         }
                         return null;
                       },
-                      onChangedFunction: (text) {
-                        setState(() {
-                          _fullNameController.text = text;
-                        });
-                      },
+                      onChangedFunction: (value) => nameNotifier.value = value,
                       onTapFunction: () {
                         if (!cardKey.currentState!.isFront) {
                           cardKey.currentState!.toggleCard();
@@ -95,7 +86,6 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                       labelText: 'Card Number',
                       hintText: '1111 1111 1111 1111',
                       icon: MaterialCommunityIcons.credit_card,
-                      controller: _cardNumberController,
                       textInputType: TextInputType.number,
                       validatorFunction: (value) {
                         if (value!.length < 19) {
@@ -103,10 +93,8 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                         }
                         return null;
                       },
-                      onChangedFunction: (text) {
-                        setState(() {
-                          _cardNumberController.text = text;
-                        });
+                      onChangedFunction: (value) {
+                        cardNumberNotifier.value = value;
                       },
                       onTapFunction: () {
                         if (!cardKey.currentState!.isFront) {
@@ -126,7 +114,6 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                           labelText: 'Expiration Date',
                           hintText: '09/24',
                           icon: IconlyBold.calendar,
-                          controller: _expirationDateController,
                           width: width * 0.45,
                           textInputType: TextInputType.number,
                           validatorFunction: (value) {
@@ -135,10 +122,8 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                             }
                             return null;
                           },
-                          onChangedFunction: (text) {
-                            setState(() {
-                              _expirationDateController.text = text;
-                            });
+                          onChangedFunction: (value) {
+                            expirationDateNotifier.value = value;
                           },
                           onTapFunction: () {
                             if (!cardKey.currentState!.isFront) {
@@ -155,7 +140,6 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                           labelText: 'CVV Code',
                           hintText: '091',
                           icon: IconlyBold.password,
-                          controller: _fullNameController,
                           textInputType: TextInputType.number,
                           width: width * 0.45,
                           validatorFunction: (value) {
@@ -164,10 +148,8 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                             }
                             return null;
                           },
-                          onChangedFunction: (text) {
-                            setState(() {
-                              _cvvCodeController.text = text;
-                            });
+                          onChangedFunction: (value) {
+                            cvvNotifier.value = value;
                           },
                           onTapFunction: () {
                             if (cardKey.currentState!.isFront) {
@@ -190,16 +172,14 @@ class _RegisterCreditCardPageState extends State<RegisterCreditCardPage> {
                         if (_formKey.currentState!.validate()) {
                           creditCardBloc.add(
                             AddCreditCardEvent(
-                              fullName: _fullNameController.text,
-                              cardNumber: _cardNumberController.text,
-                              expirationDate: _expirationDateController.text,
-                              cvvCode: _cvvCodeController.text,
+                              fullName: nameNotifier.value,
+                              cardNumber: cardNumberNotifier.value,
+                              expirationDate: expirationDateNotifier.value,
+                              cvvCode: cvvNotifier.value,
                             ),
                           );
                           creditCardBloc.add(GetCreditCardsEvent());
-                          Future.delayed(const Duration(milliseconds: 300), () {
-                            Navigator.pop(context);
-                          });
+                          Navigator.pop(context);
                         }
                       },
                     )

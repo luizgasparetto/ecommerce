@@ -5,7 +5,7 @@ class RegisterCreditCardField extends StatelessWidget {
   final String labelText;
   final String hintText;
   final IconData icon;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validatorFunction;
   final double width;
   final CrossAxisAlignment crossAxisAlignment;
@@ -20,7 +20,7 @@ class RegisterCreditCardField extends StatelessWidget {
     required this.labelText,
     required this.hintText,
     required this.icon,
-    required this.controller,
+    this.controller,
     required this.validatorFunction,
     this.width = double.infinity,
     this.crossAxisAlignment = CrossAxisAlignment.start,

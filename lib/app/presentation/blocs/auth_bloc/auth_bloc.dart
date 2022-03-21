@@ -43,6 +43,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
+    on<ResetPasswordEvent>((event, emit) async {
+      try {
+        await _authRepository.resetPassword(event.email);
+      } catch (e) {
+        throw Exception();
+      }
+    });
+
     on<GetUserEvent>((event, emit) async {
       try {
         final user = await _userUsecase.getUser();

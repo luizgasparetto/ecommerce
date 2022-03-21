@@ -21,7 +21,7 @@ class CreditCardFront extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
-        height: height * 0.25,
+        height: height * 0.28,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColorDark,
@@ -38,7 +38,7 @@ class CreditCardFront extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(top: height * 0.09, left: width * 0.03),
+                    EdgeInsets.only(top: height * 0.11, left: width * 0.03),
                 child: Text(
                   cardNumber,
                   style: TextStyle(
@@ -50,7 +50,7 @@ class CreditCardFront extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: height * 0.16,
+                  top: height * 0.2,
                   left: width * 0.03,
                   right: width * 0.03,
                 ),

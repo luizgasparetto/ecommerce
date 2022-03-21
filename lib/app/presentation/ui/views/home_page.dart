@@ -164,14 +164,15 @@ class HomePage extends StatelessWidget {
                           final product = state.productList[index];
 
                           return CustomProductCard(
-                              product: product,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  '/product_details',
-                                  arguments: product,
-                                );
-                              });
+                            product: product,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/product_details',
+                                arguments: product,
+                              );
+                            },
+                          );
                         },
                       ),
                     );

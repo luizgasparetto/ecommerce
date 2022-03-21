@@ -26,7 +26,7 @@ class AuthRepositoryImp implements AuthRepository {
     return StreamBuilder<User?>(
       stream: _auth.authStateChanges(),
       builder: (context, snapshot) {
-        return snapshot.hasData ? const HomePage() : const LoginPage();
+        return snapshot.hasData ? const HomePage() : LoginPage();
       },
     );
   }
@@ -52,4 +52,9 @@ class AuthRepositoryImp implements AuthRepository {
 
   @override
   Future<void> logOut() async => await _auth.signOut();
+
+  @override
+  Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 }
