@@ -1,6 +1,10 @@
 import 'package:ecommerce/app/domain/repositories/credit_card_repository.dart';
+import 'package:ecommerce/app/domain/usecases/auth_usecase/auth_usecase.dart';
+import 'package:ecommerce/app/domain/usecases/auth_usecase/auth_usecase_imp.dart';
 import 'package:ecommerce/app/domain/usecases/credit_card_usecase/credit_card_usecase.dart';
 import 'package:ecommerce/app/domain/usecases/credit_card_usecase/credit_card_usecase_imp.dart';
+import 'package:ecommerce/app/domain/usecases/get_product_list/get_products_usecase.dart';
+import 'package:ecommerce/app/domain/usecases/get_product_list/get_products_usecase_imp.dart';
 import 'package:ecommerce/app/external/datasources/cart_datasource_imp.dart';
 import 'package:ecommerce/app/external/datasources/credit_card_datasource_imp.dart';
 import 'package:ecommerce/app/infra/datasources/cart_datasource.dart';
@@ -66,6 +70,8 @@ class Injection {
 
     getIt.registerLazySingleton<CreditCardUsecase>(
         () => CreditCardUsecaseImp(getIt()));
+
+    getIt.registerLazySingleton<AuthUsecase>(() => AuthUsecaseImp(getIt()));
 
     //controllers
     getIt.registerSingleton<GetProductsController>(

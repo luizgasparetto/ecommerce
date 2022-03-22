@@ -12,24 +12,33 @@ class SignUpEvent extends AuthEvent {
   final String email;
   final String password;
 
+  final BuildContext context;
+
   const SignUpEvent({
     required this.name,
     required this.email,
     required this.password,
+    required this.context,
   });
 
   @override
-  List<Object> get props => [name, email, password];
+  List<Object> get props => [name, email, password, context];
 }
 
 class SignInEvent extends AuthEvent {
   final String email;
   final String password;
 
-  const SignInEvent({required this.email, required this.password});
+  final BuildContext context;
+
+  const SignInEvent({
+    required this.email,
+    required this.password,
+    required this.context,
+  });
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [email, password, context];
 }
 
 class LogoutEvent extends AuthEvent {}

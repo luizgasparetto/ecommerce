@@ -1,3 +1,6 @@
+import 'package:ecommerce/app/presentation/ui/widgets/custom_text_field_basic.dart';
+import 'package:ecommerce/app/presentation/ui/widgets/product/custom_product_card.dart';
+import 'package:ecommerce/app/presentation/ui/widgets/product/skeleton_product_card.dart';
 import 'package:ecommerce/core/exports/exports.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,19 +30,6 @@ class HomePage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        // IconButton(
-                        //   icon: Icon(
-                        //     MaterialCommunityIcons.logout,
-                        //     size: height * 0.04,
-                        //   ),
-                        //   onPressed: () {
-                        //     authBloc.add(LogoutEvent());
-                        //     Future.delayed(const Duration(milliseconds: 500),
-                        //         () {
-                        //       Navigator.pop(context);
-                        //     });
-                        //   },
-                        // ),
                         IconButton(
                           icon: Icon(
                             MaterialCommunityIcons.cart,
@@ -87,26 +77,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.03),
-              SizedBox(
-                height: height * 0.07,
-                child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
-                      ),
-                    ),
-                    prefixIcon: const Icon(IconlyLight.search),
-                    hintText: 'Search',
-                    hintStyle: const TextStyle(),
-                  ),
-                  textAlignVertical: TextAlignVertical.bottom,
-                  onChanged: (value) => productBloc
-                    ..add(FetchProductListBySearchBarEvent(searchText: value)),
-                ),
+              CustomTextFieldBasic(
+                hintText: 'Search',
+                icon: IconlyLight.search,
+                onChangedFunction: (value) => productBloc
+                  ..add(FetchProductListBySearchBarEvent(searchText: value)),
               ),
               SizedBox(height: height * 0.02),
               Padding(
@@ -146,7 +121,20 @@ class HomePage extends StatelessWidget {
               BlocBuilder<GetProductListBloc, GetProductListState>(
                 builder: ((context, state) {
                   if (state is GetProductListLoadingState) {
-                    return const Center(child: CircularProgressIndicator());
+                    return GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        mainAxisExtent: height * 0.32,
+                      ),
+                      itemCount: 6,
+                      itemBuilder: (_, __) {
+                        return const SkeletonProductCard();
+                      },
+                    );
                   } else if (state is GetProductListLoadedState) {
                     return Container(
                       margin: EdgeInsets.only(bottom: height * 0.02),

@@ -3,7 +3,7 @@ import 'package:ecommerce/core/exports/exports.dart';
 class CustomTextFieldBasic extends StatelessWidget {
   final String hintText;
   final IconData icon;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final bool obscureText;
   final TextInputType textInputType;
   final void Function(String)? onChangedFunction;
@@ -12,7 +12,7 @@ class CustomTextFieldBasic extends StatelessWidget {
     Key? key,
     required this.hintText,
     required this.icon,
-    required this.controller,
+    this.controller,
     this.obscureText = false,
     this.textInputType = TextInputType.text,
     this.onChangedFunction,

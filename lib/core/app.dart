@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/domain/usecases/auth_usecase/auth_usecase.dart';
 import 'package:ecommerce/app/presentation/blocs/credit_card_bloc/credit_card_bloc.dart';
 import 'package:ecommerce/app/presentation/ui/views/credit_card/register_credit_card_page.dart';
 import 'package:ecommerce/app/presentation/ui/views/credit_card/credit_cards_page.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           '/register_credit_cards': (context) => const RegisterCreditCardPage(),
           '/location': (context) => const LocationPage(),
         },
-        home: GetIt.I.get<AuthRepository>().getLandingPage(context),
+        home: GetIt.I.get<AuthUsecase>().getLandingPage(context),
       ),
     );
   }

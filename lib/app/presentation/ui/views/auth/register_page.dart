@@ -129,6 +129,7 @@ class RegisterPage extends StatelessWidget {
                           name: _nameNotifier.value,
                           email: _emailNotifier.value,
                           password: _passwordNotifier.value,
+                          context: context,
                         ),
                       );
                     }),

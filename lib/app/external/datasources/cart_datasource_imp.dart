@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:ecommerce/app/infra/datasources/cart_datasource.dart';
 import 'package:ecommerce/core/exports/exports.dart';
 

@@ -1,3 +1,4 @@
+import 'package:ecommerce/app/infra/exceptions/sign_in_exception.dart';
 import 'package:ecommerce/app/presentation/ui/widgets/custom_change_password_bottom_sheet.dart';
 import 'package:ecommerce/core/exports/exports.dart';
 
@@ -113,29 +114,35 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          fontSize: MediaQuery.of(context).textScaleFactor * 20,
-                        ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).textScaleFactor * 20,
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).primaryColorDark,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColorDark,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    onPressed: () async {
-                      authBloc.add(
-                        SignInEvent(
-                          email: _emailNotifier.value,
-                          password: _passwordNotifier.value,
-                        ),
-                      );
-                    }),
+                  ),
+                  onPressed: () async {
+                    try {
+                      authBloc.add(SignInEvent(
+                        email: _emailNotifier.value,
+                        password: _passwordNotifier.value,
+                        context: context,
+                      ));
+                    } on SignInException catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(e.errorMessage),
+                      ));
+                    }
+                  },
+                ),
               ),
               SizedBox(height: height * 0.015),
               Row(

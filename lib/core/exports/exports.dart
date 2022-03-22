@@ -36,14 +36,8 @@ export 'package:ecommerce/app/presentation/blocs/get_product_list_bloc/get_produ
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:ecommerce/app/presentation/controllers/get_products_controller.dart';
 export 'package:ecommerce/app/presentation/ui/widgets/custom_elevated_button.dart';
-export 'package:ecommerce/app/presentation/ui/widgets/custom_product_tile.dart';
+export 'package:ecommerce/app/presentation/ui/widgets/product/custom_product_tile.dart';
 export 'package:lottie/lottie.dart';
 export 'package:flutter_vector_icons/flutter_vector_icons.dart';
 export 'package:iconly/iconly.dart';
 export 'package:ecommerce/app/presentation/ui/widgets/custom_filter_card.dart';
-export 'package:ecommerce/app/presentation/ui/widgets/custom_product_card.dart';
-export 'package:ecommerce/app/domain/entities/product_entity.dart';
-export 'package:ecommerce/app/presentation/ui/widgets/custom_store_card.dart';
-export 'package:ecommerce/app/presentation/ui/widgets/custom_user_tile.dart';
-export 'package:ecommerce/app/infra/exceptions/sign_in_exception.dart';
-export 'package:ecommerce/app/infra/exceptions/sign_up_exception.dart';
