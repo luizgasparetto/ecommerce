@@ -40,8 +40,8 @@ class Injection {
     );
 
     //repositories
-    getIt.registerLazySingleton<GetProductListRepository>(
-        () => GetProductListRepositoryImp(getIt()));
+    getIt.registerLazySingleton<GetProductsRepository>(
+        () => GetProductsRepositoryImp(getIt()));
 
     getIt.registerLazySingleton<UserRepository>(
         () => UserRepositoryImp(getIt()));
@@ -56,8 +56,8 @@ class Injection {
         () => CreditCardRepositoryImp(getIt()));
 
     //usecases
-    getIt.registerLazySingleton<GetProductListUsecase>(
-        () => GetProductListUsecaseImp(getIt()));
+    getIt.registerLazySingleton<GetProductsUsecase>(
+        () => GetProductsUsecaseImp(getIt()));
 
     getIt.registerLazySingleton<UserUsecase>(
         () => UserUsecaseImp(userRepository: getIt()));

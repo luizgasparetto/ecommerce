@@ -1,12 +1,12 @@
 import 'package:ecommerce/core/exports/exports.dart';
 
 class GetProductsController {
-  final GetProductListUsecase _getProductListUsecase;
+  final GetProductsUsecase _getProductListUsecase;
 
   GetProductsController(this._getProductListUsecase);
 
   Future<List<ProductEntity?>> filterByTag(String? tag) async {
-    final productList = await _getProductListUsecase.handle();
+    final productList = await _getProductListUsecase.getProducts();
     List<ProductEntity> productListWithTag = [];
 
     if (tag == null) return productList;
@@ -21,7 +21,7 @@ class GetProductsController {
   }
 
   Future<List<ProductEntity?>> filterBySearchBar(String? text) async {
-    final productList = await _getProductListUsecase.handle();
+    final productList = await _getProductListUsecase.getProducts();
     List<ProductEntity> productListWithSearchBar = [];
 
     if (text == null) return productList;
