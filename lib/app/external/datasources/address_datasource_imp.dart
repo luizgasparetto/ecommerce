@@ -1,26 +1,39 @@
 import 'dart:convert';
 
-import 'package:ecommerce/app/domain/entities/address_entity.dart';
 import 'package:ecommerce/app/infra/datasources/address_datasource.dart';
+import 'package:ecommerce/core/exports/exports.dart';
 import 'package:http/http.dart';
 
-class AddressDatasourceImp implements AddresDatasource {
+class AddressDatasourceImp implements AddressDatasource {
   final Client client;
+  final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore firestore;
 
-  AddressDatasourceImp(this.client);
+  AddressDatasourceImp({
+    required this.client,
+    required this.firebaseAuth,
+    required this.firestore,
+  });
 
   String addresWithCep(String cep) => "viacep.com.br/ws/$cep/json/";
 
   @override
-  Future<Map<String, dynamic>> getAddress(String cep) async {
+  Future<Map<String, dynamic>> getAddressFromCEP(String cep) async {
     final address = await client.get(Uri.parse(addresWithCep(cep)));
     final jsonAddress = jsonDecode(address.body);
 
-    return jsonAddress;
+    return jsonAddress;""
   }
 
   @override
-  Future<void> registerAddress(AddressEntity address) async {
+  Future<void> registerAddress(Map<String, dynamic> address) async {
+    await firestore.collection('users').doc(firebaseAuth.currentUser!.uid).set({
+      "address": FieldValue.arrayUnion([address]),
+    });
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> getAddressList() async {
     throw UnimplementedError();
   }
 }

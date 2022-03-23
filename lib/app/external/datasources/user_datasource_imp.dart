@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/app/domain/entities/address_entity.dart';
 import 'package:ecommerce/app/domain/entities/credit_card_entity.dart';
 import 'package:ecommerce/app/domain/entities/product_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,6 +36,7 @@ class UserDatasourceImp implements UserDatasource {
       'email': data['email'],
       'cartProducts': <ProductEntity>[],
       'creditCards': <CreditCardEntity>[],
+      'address': <AddressEntity>[],
     });
   }
 }

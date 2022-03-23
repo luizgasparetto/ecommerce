@@ -1,6 +1,5 @@
-import 'package:ecommerce/app/domain/entities/address_entity.dart';
-
-abstract class AddresDatasource {
-  Future<Map<String, dynamic>> getAddress(String cep);
-  Future<void> registerAddress(AddressEntity address);
+abstract class AddressDatasource {
+  Future<Map<String, dynamic>> getAddressFromCEP(String cep);
+  Future<List<Map<String, dynamic>>> getAddressList();
+  Future<void> registerAddress(Map<String, dynamic> address);
 }
