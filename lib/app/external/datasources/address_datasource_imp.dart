@@ -22,7 +22,7 @@ class AddressDatasourceImp implements AddressDatasource {
     final address = await client.get(Uri.parse(addresWithCep(cep)));
     final jsonAddress = jsonDecode(address.body);
 
-    return jsonAddress;""
+    return jsonAddress;
   }
 
   @override
