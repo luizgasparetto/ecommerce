@@ -34,6 +34,11 @@ class AddressDatasourceImp implements AddressDatasource {
 
   @override
   Future<List<Map<String, dynamic>>> getAddressList() async {
-    throw UnimplementedError();
+    final user = await firestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .get();
+
+    return user['address'];
   }
 }

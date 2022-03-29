@@ -21,7 +21,7 @@ class RegisterCreditCardFront extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
-        height: height * 0.28,
+        height: height * 0.26,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColorDark,
@@ -60,7 +60,7 @@ class RegisterCreditCardFront extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: height * 0.18,
+                  top: height * 0.17,
                   left: width * 0.03,
                   right: width * 0.03,
                 ),

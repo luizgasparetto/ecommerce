@@ -12,7 +12,7 @@ class CreditCardDatasourceImp implements CreditCardDatasource {
         _firebaseAuth = firebaseAuth;
 
   @override
-  Future<List> getCreditCards() async {
+  Future<List<Map<String, dynamic>>> getCreditCards() async {
     final user = await _firebaseFirestore
         .collection('users')
         .doc(_firebaseAuth.currentUser!.uid)
