@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'core/app.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Injection.inject();
+
   runApp(const MyApp());
 }

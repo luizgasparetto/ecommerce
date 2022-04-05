@@ -12,6 +12,8 @@ class CreditCardsPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
+    final creditCardBloc = GetIt.I.get<CreditCardBloc>();
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -65,17 +67,38 @@ class CreditCardsPage extends StatelessWidget {
 
                       return Padding(
                         padding: EdgeInsets.only(bottom: height * 0.015),
-                        child: FlipCard(
-                          front: CreditCardFront(
-                            fullName: creditCard.fullName,
-                            cardNumber: creditCard.cardNumber,
-                            expirationDate: creditCard.expirationDate,
+                        child: InkWell(
+                          child: FlipCard(
+                            front: CreditCardFront(
+                              fullName: creditCard.fullName,
+                              cardNumber: creditCard.cardNumber,
+                              expirationDate: creditCard.expirationDate,
+                            ),
+                            back: CreditCardBack(
+                              cvvCode: creditCard.cvvCode,
+                            ),
+                            fill: Fill.fillBack,
+                            speed: 600,
                           ),
-                          back: CreditCardBack(
-                            cvvCode: creditCard.cvvCode,
-                          ),
-                          fill: Fill.fillBack,
-                          speed: 600,
+                          onLongPress: () async {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return TextButton(
+                                  child: const Text(
+                                    "DELETE CARD",
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                  onPressed: () async {
+                                    creditCardBloc.add(RemoveCreditCardEvent(
+                                        creditCard: creditCard));
+                                    creditCardBloc.add(GetCreditCardsEvent());
+                                    Navigator.pop(context);
+                                  },
+                                );
+                              },
+                            );
+                          },
                         ),
                       );
                     },
